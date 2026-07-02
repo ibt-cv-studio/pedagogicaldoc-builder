@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PedagoDoc — Professional Pedagogical Document Builder</title>
+<title>PedagoDoc — CBC Document Builder (Rwanda)</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ===== TOKENS ===== */
+/* ===== DESIGN TOKENS ===== */
 :root {
   --forest: #1B4332;
   --forest-mid: #2D6A4F;
@@ -20,945 +21,270 @@
   --ink-mid: #4A4A4A;
   --ink-light: #7A7A7A;
   --white: #FFFFFF;
-  --success: #2D6A4F;
-  --warning: #E07B5A;
   --border: #D8D0C0;
-  --shadow: rgba(27,67,50,0.08);
+  --shadow: rgba(27,67,50,0.10);
   --radius: 8px;
   --radius-lg: 14px;
 }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;line-height:1.6}
+h1,h2,h3{font-family:'Playfair Display',serif}
+h1{font-size:1.8rem;color:var(--forest)}
+h2{font-size:1.3rem;color:var(--forest)}
+h3{font-size:1.05rem;color:var(--forest-mid)}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  min-height: 100vh;
-  line-height: 1.6;
-}
-
-/* ===== TYPOGRAPHY ===== */
-h1, h2, h3 { font-family: 'Playfair Display', serif; }
-h1 { font-size: 1.8rem; color: var(--forest); }
-h2 { font-size: 1.3rem; color: var(--forest); }
-h3 { font-size: 1.05rem; color: var(--forest-mid); }
-
-/* ===== TOP NAV ===== */
-.top-nav {
-  background: var(--forest);
-  color: var(--white);
-  padding: 0 24px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-}
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  color: var(--white);
-  text-decoration: none;
-}
-.nav-brand-icon {
-  width: 32px; height: 32px;
-  background: var(--gold);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
-}
-.nav-actions { display: flex; gap: 8px; align-items: center; }
-.btn-nav {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.3);
-  color: var(--white);
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.82rem;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.2s;
-}
-.btn-nav:hover { background: rgba(255,255,255,0.12); }
-.btn-nav.primary {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--forest);
-  font-weight: 600;
-}
-.btn-nav.primary:hover { background: var(--gold-light); }
+/* ===== NAV ===== */
+.top-nav{background:var(--forest);color:#fff;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;text-decoration:none;cursor:pointer}
+.nav-brand-icon{width:32px;height:32px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.btn-nav{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.82rem;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-nav:hover{background:rgba(255,255,255,.12)}
+.btn-nav.primary{background:var(--gold);border-color:var(--gold);color:var(--forest);font-weight:600}
+.btn-nav.primary:hover{background:var(--gold-light)}
 
 /* ===== SCREENS ===== */
-.screen { display: none; }
-.screen.active { display: block; }
+.screen{display:none}.screen.active{display:block}
 
 /* ===== DASHBOARD ===== */
-.dashboard {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 40px 24px;
-}
-.dashboard-hero {
-  background: var(--forest);
-  border-radius: var(--radius-lg);
-  padding: 40px 48px;
-  color: var(--white);
-  margin-bottom: 40px;
-  position: relative;
-  overflow: hidden;
-}
-.dashboard-hero::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 220px; height: 220px;
-  border-radius: 50%;
-  background: rgba(201,168,76,0.15);
-}
-.dashboard-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -80px; right: 80px;
-  width: 160px; height: 160px;
-  border-radius: 50%;
-  background: rgba(201,168,76,0.08);
-}
-.hero-eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-.dashboard-hero h1 { color: var(--white); font-size: 2rem; margin-bottom: 10px; }
-.dashboard-hero p { color: rgba(255,255,255,0.72); max-width: 540px; line-height: 1.7; }
+.dashboard{max-width:1080px;margin:0 auto;padding:40px 24px}
+.dashboard-hero{background:var(--forest);border-radius:var(--radius-lg);padding:40px 48px;color:#fff;margin-bottom:40px;position:relative;overflow:hidden}
+.dashboard-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(201,168,76,.15)}
+.hero-eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:600}
+.dashboard-hero h1{color:#fff;font-size:2rem;margin-bottom:10px}
+.dashboard-hero p{color:rgba(255,255,255,.72);max-width:540px;line-height:1.7}
+.doc-grid-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-light);font-weight:600;margin-bottom:16px}
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:40px}
+.doc-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden}
+.doc-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--forest-light);opacity:0;transition:opacity .2s}
+.doc-card:hover{box-shadow:0 8px 28px var(--shadow);transform:translateY(-2px);border-color:var(--forest-light)}
+.doc-card:hover::before{opacity:1}
+.doc-card-icon{width:44px;height:44px;background:var(--cream-dark);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px}
+.doc-card h3{margin-bottom:6px;font-size:.95rem}
+.doc-card p{font-size:.8rem;color:var(--ink-light);line-height:1.5}
+.doc-card-badge{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.05em;padding:3px 8px;border-radius:20px;margin-top:12px;background:var(--cream-dark);color:var(--ink-mid);text-transform:uppercase}
+.recent-section h2{margin-bottom:16px;font-size:1rem;color:var(--ink-mid);font-family:'Inter',sans-serif;font-weight:600}
+.recent-empty{background:#fff;border:1px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;color:var(--ink-light);font-size:.88rem}
+.recent-empty span{display:block;font-size:1.8rem;margin-bottom:8px}
+.recent-list{display:flex;flex-direction:column;gap:8px}
+.recent-item{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .18s}
+.recent-item:hover{border-color:var(--forest-light);box-shadow:0 2px 8px var(--shadow)}
+.recent-item-left{display:flex;align-items:center;gap:14px}
+.recent-item-icon{font-size:1.2rem}
+.recent-item-name{font-weight:500;font-size:.9rem}
+.recent-item-meta{font-size:.78rem;color:var(--ink-light);margin-top:2px}
+.recent-item-progress{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--forest-mid);font-weight:600}
+.progress-dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
 
-.doc-grid-title {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-light);
-  font-weight: 600;
-  margin-bottom: 16px;
-}
+/* ===== BUILDER ===== */
+.builder-layout{display:grid;grid-template-columns:250px 1fr 290px;min-height:calc(100vh - 56px)}
+@media(max-width:1100px){.builder-layout{grid-template-columns:220px 1fr}.guidance-panel{display:none}}
+@media(max-width:720px){.builder-layout{grid-template-columns:1fr}.builder-sidebar{display:none}.builder-main{padding:20px 16px}.field-row,.field-row-3{grid-template-columns:1fr}}
 
-.doc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
-  margin-bottom: 40px;
-}
+/* SIDEBAR */
+.builder-sidebar{background:var(--forest);padding:24px 0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.sidebar-doc-title{padding:0 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:8px}
+.sidebar-doc-eyebrow{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:600;margin-bottom:4px}
+.sidebar-doc-name{font-family:'Playfair Display',serif;color:#fff;font-size:1rem;line-height:1.3}
+.sidebar-progress-bar-wrap{padding:12px 20px 16px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:8px}
+.progress-label{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.5);margin-bottom:6px}
+.progress-label span:last-child{color:var(--gold);font-weight:600}
+.progress-bar-track{height:4px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.progress-bar-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s ease}
+.step-list{padding:0 12px}
+.step-tab{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:all .18s;margin-bottom:2px}
+.step-tab:hover{background:rgba(255,255,255,.08)}
+.step-tab.active{background:rgba(255,255,255,.12)}
+.step-num{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.72rem;color:rgba(255,255,255,.5);flex-shrink:0;transition:all .2s;font-weight:600}
+.step-tab.active .step-num{background:var(--gold);border-color:var(--gold);color:var(--forest)}
+.step-tab.completed .step-num{background:var(--forest-light);border-color:var(--forest-light);color:#fff}
+.step-info{flex:1;min-width:0}
+.step-title{font-size:.82rem;color:rgba(255,255,255,.85);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step-tab.active .step-title{color:#fff}
+.step-status{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:1px}
+.step-tab.completed .step-status{color:var(--gold)}
 
-.doc-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  cursor: pointer;
-  transition: all 0.22s;
-  position: relative;
-  overflow: hidden;
-}
-.doc-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 4px; height: 100%;
-  background: var(--forest-light);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.doc-card:hover {
-  box-shadow: 0 8px 28px var(--shadow);
-  transform: translateY(-2px);
-  border-color: var(--forest-light);
-}
-.doc-card:hover::before { opacity: 1; }
-.doc-card-icon {
-  width: 44px; height: 44px;
-  background: var(--cream-dark);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
-  margin-bottom: 14px;
-}
-.doc-card h3 { margin-bottom: 6px; font-size: 0.95rem; }
-.doc-card p { font-size: 0.8rem; color: var(--ink-light); line-height: 1.5; }
-.doc-card-badge {
-  display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 3px 8px;
-  border-radius: 20px;
-  margin-top: 12px;
-  background: var(--cream-dark);
-  color: var(--ink-mid);
-  text-transform: uppercase;
-}
+/* MAIN FORM */
+.builder-main{padding:32px 36px;background:var(--cream);min-height:calc(100vh - 56px)}
+.step-header{margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.step-eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-weight:700;margin-bottom:6px}
+.step-header h2{font-size:1.5rem;margin-bottom:6px}
+.step-header p{font-size:.88rem;color:var(--ink-mid)}
+.form-field-group{margin-bottom:24px}
+.field-label{display:block;font-weight:600;font-size:.88rem;margin-bottom:4px;color:var(--ink)}
+.field-label .req{color:var(--coral);margin-left:3px}
+.field-hint{font-size:.78rem;color:var(--ink-light);margin-bottom:8px;line-height:1.5}
+.field-input{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:.9rem;background:#fff;color:var(--ink);transition:border-color .2s,box-shadow .2s;outline:none}
+.field-input:focus{border-color:var(--forest-light);box-shadow:0 0 0 3px rgba(64,145,108,.12)}
+.field-input.valid{border-color:var(--forest-light)}
+.field-input.invalid{border-color:var(--coral)}
+textarea.field-input{resize:vertical;min-height:90px;line-height:1.6}
+.field-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A7A7A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.field-validation{margin-top:6px;font-size:.76rem}
+.validation-row{display:flex;align-items:center;gap:6px;margin-top:3px;color:var(--ink-light)}
+.validation-row.pass{color:var(--forest-mid)}
+.validation-row.fail{color:var(--coral)}
+.v-icon{font-size:.85rem}
+.step-nav{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);margin-top:32px}
+.btn{padding:10px 22px;border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-outline{background:none;border:1.5px solid var(--border);color:var(--ink-mid)}
+.btn-outline:hover{border-color:var(--ink-mid);color:var(--ink)}
+.btn-primary{background:var(--forest);color:#fff}
+.btn-primary:hover{background:var(--forest-mid);box-shadow:0 4px 14px rgba(27,67,50,.25)}
+.btn-gold{background:var(--gold);color:var(--forest)}
+.btn-gold:hover{background:var(--gold-light)}
 
-.recent-section h2 { margin-bottom: 16px; font-size: 1rem; color: var(--ink-mid); font-family: 'Inter', sans-serif; font-weight: 600; }
-.recent-empty {
-  background: var(--white);
-  border: 1px dashed var(--border);
-  border-radius: var(--radius);
-  padding: 32px;
-  text-align: center;
-  color: var(--ink-light);
-  font-size: 0.88rem;
-}
-.recent-empty span { display: block; font-size: 1.8rem; margin-bottom: 8px; }
+/* ACTIVITIES TABLE (inside form) */
+.act-table-wrap{overflow-x:auto}
+.act-form-table{width:100%;border-collapse:collapse;min-width:600px}
+.act-form-table th{background:var(--forest);color:#fff;padding:9px 12px;text-align:left;font-size:.78rem;font-weight:500}
+.act-form-table th:first-child{border-radius:6px 0 0 0}
+.act-form-table th:last-child{border-radius:0 6px 0 0}
+.act-form-table td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+.act-form-table td textarea,.act-form-table td input{width:100%;border:none;outline:none;background:transparent;font-family:'Inter',sans-serif;font-size:.83rem;resize:none;line-height:1.5;min-height:54px;color:var(--ink)}
+.act-form-table td input{min-height:auto;padding:2px 0}
+.act-form-table tr:nth-child(even) td{background:var(--cream)}
+.add-row-btn{margin-top:10px;background:none;border:1.5px dashed var(--border);color:var(--forest-light);padding:8px 18px;border-radius:var(--radius);cursor:pointer;font-size:.82rem;font-family:'Inter',sans-serif;font-weight:500;width:100%;transition:all .18s}
+.add-row-btn:hover{border-color:var(--forest-light);background:rgba(64,145,108,.05)}
+.del-row-btn{background:none;border:none;cursor:pointer;color:var(--coral);font-size:1rem;padding:2px 6px}
 
-.recent-list { display: flex; flex-direction: column; gap: 8px; }
-.recent-item {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: all 0.18s;
-}
-.recent-item:hover { border-color: var(--forest-light); box-shadow: 0 2px 8px var(--shadow); }
-.recent-item-left { display: flex; align-items: center; gap: 14px; }
-.recent-item-icon { font-size: 1.2rem; }
-.recent-item-name { font-weight: 500; font-size: 0.9rem; }
-.recent-item-meta { font-size: 0.78rem; color: var(--ink-light); margin-top: 2px; }
-.recent-item-progress {
-  display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--forest-mid);
-  font-weight: 600;
-}
-.progress-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--gold);
-}
+/* GUIDANCE PANEL */
+.guidance-panel{background:#fff;border-left:1px solid var(--border);padding:24px 18px;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;scrollbar-width:thin}
+.guidance-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.guidance-icon{width:36px;height:36px;background:var(--cream-dark);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.guidance-header h3{font-size:.95rem}
+.tip-card{background:var(--cream);border-left:3px solid var(--forest-light);border-radius:0 var(--radius) var(--radius) 0;padding:11px 13px;margin-bottom:12px;font-size:.8rem;line-height:1.6;color:var(--ink-mid)}
+.tip-card strong{color:var(--forest);display:block;margin-bottom:4px;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+.example-card{background:#F0F7F4;border:1px solid #B7DFD0;border-radius:var(--radius);padding:13px;margin-bottom:12px}
+.example-card-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--forest-light);margin-bottom:7px}
+.example-text{font-size:.8rem;line-height:1.6;color:var(--ink-mid);font-style:italic}
+.mistake-card{background:#FFF4F1;border:1px solid #F4C5B8;border-radius:var(--radius);padding:11px 13px;margin-bottom:12px;font-size:.78rem;color:#8B3A2A;line-height:1.6}
+.mistake-card strong{display:block;margin-bottom:4px;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--coral)}
+.g-section-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-light);margin:16px 0 8px}
 
-/* ===== BUILDER LAYOUT ===== */
-.builder-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr 300px;
-  min-height: calc(100vh - 56px);
-}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:var(--radius-lg);width:100%;max-width:820px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal-header{background:var(--forest);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-header h3{color:#fff;font-size:1rem}
+.modal-close{background:none;border:none;color:rgba(255,255,255,.6);font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:4px;transition:color .15s}
+.modal-close:hover{color:#fff}
+.modal-body{padding:24px;overflow-y:auto}
+.export-actions{display:flex;gap:10px;padding:14px 24px;border-top:1px solid var(--border);flex-shrink:0}
 
-@media (max-width: 900px) {
-  .builder-layout { grid-template-columns: 1fr; }
-  .builder-sidebar, .guidance-panel { display: none; }
-  .builder-sidebar.mobile-open, .guidance-panel.mobile-open { display: block; }
-}
+/* ===== OFFICIAL DOCUMENT PREVIEW STYLES ===== */
+.doc-preview{font-family:'Times New Roman',Times,serif;font-size:10.5pt;color:#000;line-height:1.4}
+.doc-preview *{box-sizing:border-box}
 
-/* ===== SIDEBAR (Document Spine) ===== */
-.builder-sidebar {
-  background: var(--forest);
-  padding: 24px 0;
-  position: sticky;
-  top: 56px;
-  height: calc(100vh - 56px);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.2) transparent;
-}
-.sidebar-doc-title {
-  padding: 0 20px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  margin-bottom: 8px;
-}
-.sidebar-doc-eyebrow {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.sidebar-doc-name {
-  font-family: 'Playfair Display', serif;
-  color: var(--white);
-  font-size: 1rem;
-  line-height: 1.3;
-}
+/* — SCHEME OF WORK — */
+.sow-title{text-align:center;font-size:13pt;font-weight:bold;text-decoration:underline;margin-bottom:14px}
+.sow-meta{font-size:10pt;line-height:2;margin-bottom:10px}
+.sow-table{width:100%;border-collapse:collapse;font-size:9pt}
+.sow-table th,.sow-table td{border:1px solid #000;padding:4px 6px;vertical-align:top}
+.sow-table th{background:#d9e1f2;font-weight:bold;text-align:center;font-size:9pt}
+.sow-table .rotated-cell{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:8pt;min-width:20px;background:#ffe699}
+.sow-se-row td{background:#f2f2f2;font-weight:bold}
 
-.sidebar-progress-bar-wrap {
-  padding: 12px 20px 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  margin-bottom: 8px;
-}
-.progress-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 6px;
-}
-.progress-label span:last-child { color: var(--gold); font-weight: 600; }
-.progress-bar-track {
-  height: 4px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: var(--gold);
-  border-radius: 2px;
-  transition: width 0.4s ease;
-}
+/* — LESSON PLAN — */
+.lp-header-grid{width:100%;border-collapse:collapse;margin-bottom:0}
+.lp-header-grid td{border:1px solid #000;padding:5px 8px;font-size:10pt;vertical-align:top}
+.lp-header-grid .lbl{font-weight:bold;white-space:nowrap;min-width:80px}
+.lp-section-table{width:100%;border-collapse:collapse;margin-bottom:0}
+.lp-section-table td{border:1px solid #000;padding:5px 8px;font-size:10pt;vertical-align:top}
+.lp-section-table .row-label{font-weight:bold;width:140px;background:#f5f5f5}
+.lp-activities-table{width:100%;border-collapse:collapse}
+.lp-activities-table th,.lp-activities-table td{border:1px solid #000;padding:5px 7px;font-size:9.5pt;vertical-align:top}
+.lp-activities-table th{background:#f2f2f2;font-weight:bold;text-align:center;font-size:9pt}
+.lp-activities-table .phase-label{font-weight:bold;background:#f5f5f5;width:70px}
+.lp-self-eval td{border:1px solid #000;padding:6px 8px;font-size:10pt;vertical-align:top}
+.lp-self-eval .row-label{font-weight:bold;width:140px;background:#f5f5f5}
+.sig-row{margin-top:24px;display:flex;justify-content:space-between;font-size:10pt}
+.sig-line{border-top:1px solid #000;padding-top:4px;min-width:180px}
 
-.step-list { padding: 0 12px; }
-.step-tab {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.18s;
-  margin-bottom: 2px;
-  position: relative;
-}
-.step-tab:hover { background: rgba(255,255,255,0.08); }
-.step-tab.active { background: rgba(255,255,255,0.12); }
-.step-tab.completed { opacity: 0.8; }
-.step-num {
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.25);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.5);
-  flex-shrink: 0;
-  transition: all 0.2s;
-  font-weight: 600;
-}
-.step-tab.active .step-num {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--forest);
-}
-.step-tab.completed .step-num {
-  background: var(--forest-light);
-  border-color: var(--forest-light);
-  color: var(--white);
-}
-.step-info { flex: 1; min-width: 0; }
-.step-title {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.85);
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.step-tab.active .step-title { color: var(--white); }
-.step-status { font-size: 0.68rem; color: rgba(255,255,255,0.4); margin-top: 1px; }
-.step-tab.completed .step-status { color: var(--gold); }
+/* — CLASS DIARY — */
+.diary-gov-header{margin-bottom:16px}
+.diary-gov-header .republic{font-size:9pt;font-weight:bold;margin-bottom:4px}
+.diary-ministry{font-size:9pt;margin-bottom:8px}
+.diary-title{text-align:center;font-size:12pt;font-weight:bold;margin:10px 0 14px}
+.diary-meta{font-size:10pt;line-height:2;margin-bottom:10px}
+.diary-table{width:100%;border-collapse:collapse;font-size:9.5pt}
+.diary-table th,.diary-table td{border:1px solid #000;padding:5px 7px;vertical-align:top}
+.diary-table th{background:#f2f2f2;font-weight:bold;text-align:center}
+.diary-table .hw-label{font-weight:bold;background:#f5f5f5;width:100px}
+.diary-hw-table{width:100%;border-collapse:collapse;margin-top:0}
+.diary-hw-table td{border:1px solid #000;padding:5px 8px;font-size:10pt}
+.diary-hw-table .hw-lbl{font-weight:bold;background:#f5f5f5;width:100px}
 
-/* ===== MAIN FORM AREA ===== */
-.builder-main {
-  padding: 32px 36px;
-  background: var(--cream);
-  min-height: calc(100vh - 56px);
-}
-.step-header {
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
-}
-.step-eyebrow {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.step-header h2 { font-size: 1.5rem; margin-bottom: 6px; }
-.step-header p { font-size: 0.88rem; color: var(--ink-mid); }
+/* COMPLETION */
+.completion-screen{max-width:520px;margin:80px auto;text-align:center;padding:0 24px}
+.completion-icon{width:72px;height:72px;background:var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 20px}
+.completion-screen h2{font-size:1.5rem;margin-bottom:10px}
+.completion-screen p{color:var(--ink-mid);margin-bottom:24px}
+.completion-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-.form-field-group { margin-bottom: 28px; }
-.field-label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.88rem;
-  margin-bottom: 4px;
-  color: var(--ink);
-}
-.field-label .required { color: var(--coral); margin-left: 4px; }
-.field-hint {
-  font-size: 0.78rem;
-  color: var(--ink-light);
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-.field-input {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  background: var(--white);
-  color: var(--ink);
-  transition: border-color 0.2s, box-shadow 0.2s;
-  outline: none;
-}
-.field-input:focus {
-  border-color: var(--forest-light);
-  box-shadow: 0 0 0 3px rgba(64,145,108,0.12);
-}
-.field-input.valid { border-color: var(--forest-light); }
-.field-input.invalid { border-color: var(--coral); }
-textarea.field-input {
-  resize: vertical;
-  min-height: 100px;
-  line-height: 1.6;
-}
-
-.field-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A7A7A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 36px;
-}
-
-.field-validation {
-  margin-top: 6px;
-  font-size: 0.76rem;
-}
-.validation-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 3px;
-  color: var(--ink-light);
-}
-.validation-row.pass { color: var(--forest-mid); }
-.validation-row.fail { color: var(--coral); }
-.v-icon { font-size: 0.85rem; }
-
-.char-count {
-  text-align: right;
-  font-size: 0.72rem;
-  color: var(--ink-light);
-  margin-top: 4px;
-}
-.char-count.near { color: var(--warning); }
-
-/* Inline row grid */
-.field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.field-row-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 14px;
-}
-
-/* Rich text area with toolbar */
-.rta-wrap { border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--white); }
-.rta-wrap:focus-within { border-color: var(--forest-light); box-shadow: 0 0 0 3px rgba(64,145,108,0.12); }
-.rta-toolbar {
-  background: var(--cream-dark);
-  border-bottom: 1px solid var(--border);
-  padding: 6px 10px;
-  display: flex; gap: 4px; flex-wrap: wrap; align-items: center;
-}
-.rta-btn {
-  background: none;
-  border: 1px solid transparent;
-  padding: 3px 7px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  font-family: 'Inter', sans-serif;
-  color: var(--ink-mid);
-  font-weight: 500;
-  transition: all 0.15s;
-}
-.rta-btn:hover { background: var(--white); border-color: var(--border); }
-.rta-divider { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
-.rta-content {
-  min-height: 120px;
-  padding: 12px 14px;
-  outline: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--ink);
-}
-
-/* Step activities table */
-.activities-table { width: 100%; border-collapse: collapse; }
-.activities-table th {
-  background: var(--forest);
-  color: var(--white);
-  padding: 10px 14px;
-  text-align: left;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-}
-.activities-table th:first-child { border-radius: 6px 0 0 0; }
-.activities-table th:last-child { border-radius: 0 6px 0 0; }
-.activities-table td {
-  padding: 8px 10px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-}
-.activities-table td textarea {
-  width: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.84rem;
-  resize: none;
-  line-height: 1.5;
-  min-height: 56px;
-  color: var(--ink);
-}
-.activities-table tr:nth-child(even) td { background: var(--cream); }
-.add-row-btn {
-  margin-top: 10px;
-  background: none;
-  border: 1.5px dashed var(--border);
-  color: var(--forest-light);
-  padding: 8px 18px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 0.82rem;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  width: 100%;
-  transition: all 0.18s;
-}
-.add-row-btn:hover { border-color: var(--forest-light); background: rgba(64,145,108,0.05); }
-
-/* Step navigation */
-.step-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 28px;
-  border-top: 1px solid var(--border);
-  margin-top: 32px;
-}
-.btn {
-  padding: 10px 22px;
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s;
-}
-.btn-outline {
-  background: none;
-  border: 1.5px solid var(--border);
-  color: var(--ink-mid);
-}
-.btn-outline:hover { border-color: var(--ink-mid); color: var(--ink); }
-.btn-primary {
-  background: var(--forest);
-  color: var(--white);
-}
-.btn-primary:hover { background: var(--forest-mid); box-shadow: 0 4px 14px rgba(27,67,50,0.25); }
-.btn-gold {
-  background: var(--gold);
-  color: var(--forest);
-}
-.btn-gold:hover { background: var(--gold-light); }
-
-/* ===== GUIDANCE PANEL ===== */
-.guidance-panel {
-  background: var(--white);
-  border-left: 1px solid var(--border);
-  padding: 24px 20px;
-  position: sticky;
-  top: 56px;
-  height: calc(100vh - 56px);
-  overflow-y: auto;
-  scrollbar-width: thin;
-}
-.guidance-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-}
-.guidance-icon {
-  width: 36px; height: 36px;
-  background: var(--cream-dark);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-}
-.guidance-header h3 { font-size: 0.95rem; }
-
-.tip-card {
-  background: var(--cream);
-  border-left: 3px solid var(--forest-light);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 12px 14px;
-  margin-bottom: 14px;
-  font-size: 0.82rem;
-  line-height: 1.6;
-  color: var(--ink-mid);
-}
-.tip-card strong { color: var(--forest); display: block; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-
-.example-card {
-  background: #F0F7F4;
-  border: 1px solid #B7DFD0;
-  border-radius: var(--radius);
-  padding: 14px;
-  margin-bottom: 14px;
-}
-.example-card-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--forest-light);
-  margin-bottom: 8px;
-  display: flex; align-items: center; gap: 6px;
-}
-.example-text {
-  font-size: 0.82rem;
-  line-height: 1.6;
-  color: var(--ink-mid);
-  font-style: italic;
-}
-
-.mistake-card {
-  background: #FFF4F1;
-  border: 1px solid #F4C5B8;
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  margin-bottom: 14px;
-  font-size: 0.8rem;
-  color: #8B3A2A;
-  line-height: 1.6;
-}
-.mistake-card strong { display: block; margin-bottom: 4px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--coral); }
-
-.guidance-section-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-light);
-  margin: 18px 0 10px;
-}
-
-/* ===== PREVIEW MODAL ===== */
-.modal-overlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-.modal-overlay.open { display: flex; }
-.modal-box {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  width: 100%;
-  max-width: 720px;
-  max-height: 88vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-.modal-header {
-  background: var(--forest);
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-.modal-header h3 { color: var(--white); font-size: 1rem; }
-.modal-close {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.6);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: color 0.15s;
-}
-.modal-close:hover { color: var(--white); }
-.modal-body { padding: 24px; overflow-y: auto; }
-
-/* ===== DOCUMENT PREVIEW ===== */
-.doc-preview {
-  font-family: 'Times New Roman', serif;
-  font-size: 11pt;
-  line-height: 1.6;
-  color: #000;
-  max-width: 680px;
-  margin: 0 auto;
-}
-.doc-preview .school-header {
-  text-align: center;
-  border-bottom: 2px solid #000;
-  padding-bottom: 12px;
-  margin-bottom: 16px;
-}
-.doc-preview .school-name { font-size: 14pt; font-weight: bold; text-transform: uppercase; }
-.doc-preview .doc-type-title { font-size: 13pt; font-weight: bold; text-transform: uppercase; margin: 10px 0; }
-.doc-preview .info-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  border: 1px solid #000;
-  margin-bottom: 14px;
-}
-.doc-preview .info-cell {
-  padding: 5px 10px;
-  border: 1px solid #000;
-  font-size: 10pt;
-}
-.doc-preview .info-cell strong { display: inline-block; min-width: 100px; }
-.doc-preview .section-heading {
-  font-weight: bold;
-  font-size: 11pt;
-  text-transform: uppercase;
-  border-bottom: 1px solid #000;
-  padding-bottom: 3px;
-  margin: 14px 0 8px;
-}
-.doc-preview .section-body { font-size: 10.5pt; margin-bottom: 10px; }
-.doc-preview .activities-preview {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 10pt;
-  margin-bottom: 12px;
-}
-.doc-preview .activities-preview th, .doc-preview .activities-preview td {
-  border: 1px solid #000;
-  padding: 5px 8px;
-  vertical-align: top;
-}
-.doc-preview .activities-preview th { background: #E8E8E8; font-weight: bold; text-align: center; }
-.signature-line {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-.sig-box { border-top: 1px solid #000; padding-top: 4px; font-size: 10pt; }
-
-/* ===== EXPORT ACTIONS ===== */
-.export-actions {
-  display: flex;
-  gap: 10px;
-  padding: 16px 24px;
-  border-top: 1px solid var(--border);
-  flex-shrink: 0;
-}
-
-/* ===== BADGE TAG ===== */
-.badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 0.72rem;
-  font-weight: 600;
-}
-.badge-gold { background: #FEF5DC; color: #8A6B00; }
-.badge-green { background: #E0F0E9; color: var(--forest); }
-.badge-new { background: var(--gold); color: var(--forest); }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1100px) {
-  .builder-layout { grid-template-columns: 220px 1fr; }
-  .guidance-panel { display: none; }
-}
-@media (max-width: 720px) {
-  .builder-layout { grid-template-columns: 1fr; }
-  .builder-sidebar { display: none; }
-  .builder-main { padding: 20px 16px; }
-  .field-row, .field-row-3 { grid-template-columns: 1fr; }
-  .dashboard { padding: 20px 16px; }
-  .dashboard-hero { padding: 24px 20px; }
-  .dashboard-hero h1 { font-size: 1.4rem; }
-}
-
-/* ===== UTILITIES ===== */
-.hidden { display: none !important; }
-.mt-4 { margin-top: 4px; }
-.mt-8 { margin-top: 8px; }
-.mt-16 { margin-top: 16px; }
-.mb-0 { margin-bottom: 0; }
-.text-sm { font-size: 0.82rem; }
-.text-xs { font-size: 0.72rem; }
-.color-light { color: var(--ink-light); }
-
-/* Toast */
-.toast {
-  position: fixed;
-  bottom: 24px; right: 24px;
-  background: var(--forest);
-  color: var(--white);
-  padding: 12px 20px;
-  border-radius: var(--radius);
-  font-size: 0.85rem;
-  font-weight: 500;
-  z-index: 999;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-  transform: translateY(80px);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-.toast.show { transform: translateY(0); opacity: 1; }
-
-/* Field tip toggle */
-.field-tip-toggle {
-  font-size: 0.75rem;
-  color: var(--forest-light);
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 3px;
-}
-.field-tip-toggle:hover { color: var(--forest); }
-.field-tip-box {
-  background: #F0F7F4;
-  border: 1px solid #B7DFD0;
-  border-radius: var(--radius);
-  padding: 10px 14px;
-  margin-top: 8px;
-  font-size: 0.8rem;
-  color: var(--ink-mid);
-  line-height: 1.6;
-}
-
-/* Completion screen */
-.completion-screen {
-  max-width: 560px;
-  margin: 80px auto;
-  text-align: center;
-  padding: 0 24px;
-}
-.completion-icon {
-  width: 80px; height: 80px;
-  background: var(--forest);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.2rem;
-  margin: 0 auto 24px;
-}
-.completion-screen h2 { font-size: 1.6rem; margin-bottom: 10px; }
-.completion-screen p { color: var(--ink-mid); margin-bottom: 28px; }
-.completion-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--forest);color:#fff;padding:12px 20px;border-radius:var(--radius);font-size:.85rem;font-weight:500;z-index:999;box-shadow:0 4px 16px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:all .3s ease}
+.toast.show{transform:translateY(0);opacity:1}
 </style>
 </head>
 <body>
 
 <!-- TOP NAV -->
 <nav class="top-nav">
-  <a class="nav-brand" href="#" onclick="showDashboard()">
+  <div class="nav-brand" onclick="showDashboard()">
     <div class="nav-brand-icon">📋</div>
-    PedagoDoc
-  </a>
+    PedagoDoc <span style="font-size:.75rem;opacity:.6;font-family:'Inter',sans-serif;margin-left:4px">Rwanda CBC</span>
+  </div>
   <div class="nav-actions" id="navActions">
     <button class="btn-nav" onclick="showDashboard()">← Dashboard</button>
-    <button class="btn-nav" onclick="openPreview()">Preview</button>
-    <button class="btn-nav primary" onclick="saveDocument()">Save</button>
+    <button class="btn-nav" onclick="openPreview()" id="previewBtn" style="display:none">👁 Preview</button>
+    <button class="btn-nav primary" onclick="saveDocument()" id="saveBtn" style="display:none">Save</button>
   </div>
 </nav>
 
-<!-- ===== DASHBOARD SCREEN ===== -->
+<!-- DASHBOARD -->
 <div id="dashboardScreen" class="screen active">
   <div class="dashboard">
     <div class="dashboard-hero">
-      <div class="hero-eyebrow">Professional Pedagogical Tools</div>
+      <div class="hero-eyebrow">Rwanda CBC — Official Format</div>
       <h1>What will you create today?</h1>
-      <p>Select a document type below. The system will guide you through every section — step by step — with examples, tips, and automatic formatting.</p>
+      <p>Select a document type. The system guides you step-by-step and generates the document in the official Rwanda CBC format — ready to print.</p>
     </div>
-
     <div class="doc-grid-title">Document Types</div>
-    <div class="doc-grid" id="docGrid">
-      <!-- filled by JS -->
-    </div>
-
+    <div class="doc-grid" id="docGrid"></div>
     <div class="recent-section">
       <h2>Recent Documents</h2>
-      <div id="recentList">
-        <div class="recent-empty">
-          <span>📂</span>
-          No documents yet. Create your first document above to get started.
-        </div>
-      </div>
+      <div id="recentList"></div>
     </div>
   </div>
 </div>
 
-<!-- ===== BUILDER SCREEN ===== -->
+<!-- BUILDER -->
 <div id="builderScreen" class="screen">
   <div class="builder-layout">
-    <!-- SIDEBAR -->
-    <aside class="builder-sidebar" id="builderSidebar">
+    <aside class="builder-sidebar">
       <div class="sidebar-doc-title">
-        <div class="sidebar-doc-eyebrow" id="sidebarEyebrow">Document Type</div>
-        <div class="sidebar-doc-name" id="sidebarDocName">Loading...</div>
+        <div class="sidebar-doc-eyebrow" id="sidebarEyebrow">Document</div>
+        <div class="sidebar-doc-name" id="sidebarDocName">New Document</div>
       </div>
       <div class="sidebar-progress-bar-wrap">
-        <div class="progress-label">
-          <span>Completion</span>
-          <span id="progressPercent">0%</span>
-        </div>
-        <div class="progress-bar-track">
-          <div class="progress-bar-fill" id="progressBarFill" style="width:0%"></div>
-        </div>
+        <div class="progress-label"><span>Completion</span><span id="progressPercent">0%</span></div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBarFill" style="width:0%"></div></div>
       </div>
       <div class="step-list" id="stepList"></div>
     </aside>
-
-    <!-- MAIN AREA -->
-    <main class="builder-main" id="builderMain">
-      <!-- Dynamic step content inserted here -->
-    </main>
-
-    <!-- GUIDANCE PANEL -->
-    <aside class="guidance-panel" id="guidancePanel">
+    <main class="builder-main" id="builderMain"></main>
+    <aside class="guidance-panel">
       <div class="guidance-header">
         <div class="guidance-icon">💡</div>
-        <div>
-          <h3>Field Guide</h3>
-          <div class="text-xs color-light" id="guidanceSubtitle">Select a field for tips</div>
-        </div>
+        <div><h3>Field Guide</h3><div style="font-size:.72rem;color:var(--ink-light)" id="guidanceSubtitle">Click a field for guidance</div></div>
       </div>
       <div id="guidanceContent">
-        <div class="tip-card">
-          <strong>Getting Started</strong>
-          Click on any field in the form and this panel will show you writing tips, examples, and common mistakes to avoid.
-        </div>
+        <div class="tip-card"><strong>Getting Started</strong>Click any field in the form — this panel will show writing tips, examples, and common mistakes for that field.</div>
       </div>
     </aside>
   </div>
@@ -968,1003 +294,949 @@ textarea.field-input {
 <div class="modal-overlay" id="previewModal">
   <div class="modal-box">
     <div class="modal-header">
-      <h3>Document Preview</h3>
+      <h3 id="previewModalTitle">Document Preview — Official Format</h3>
       <button class="modal-close" onclick="closePreview()">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="doc-preview" id="previewContent"></div>
-    </div>
+    <div class="modal-body"><div class="doc-preview" id="previewContent"></div></div>
     <div class="export-actions">
-      <button class="btn btn-primary" onclick="printPreview()">🖨️ Print</button>
+      <button class="btn btn-primary" onclick="printDoc()">🖨️ Print / Save as PDF</button>
       <button class="btn btn-outline" onclick="closePreview()">Close</button>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== APP STATE =====
-const state = {
+// =========================================================
+// APP STATE
+// =========================================================
+const S = {
   currentDoc: null,
   currentStep: 0,
   formData: {},
-  recentDocs: JSON.parse(localStorage.getItem('pedagodoc_recent') || '[]'),
+  tableData: {},   // keyed by fieldId
+  recentDocs: JSON.parse(localStorage.getItem('pedagodoc_v2') || '[]'),
 };
 
-// ===== DOCUMENT DEFINITIONS =====
+// =========================================================
+// DOC TYPE DEFINITIONS
+// =========================================================
 const DOC_TYPES = [
-  {
-    id: 'lesson_plan',
-    name: 'Lesson Plan',
-    icon: '📖',
-    desc: 'A structured guide for a single teaching session with objectives, activities, and assessment.',
-    badge: 'Most Used',
-    steps: [
-      {
-        id: 'general',
-        title: 'General Information',
-        shortTitle: 'General Info',
-        desc: 'Basic details that identify the lesson and teacher.',
-        fields: [
-          { id: 'school', label: 'School Name', type: 'text', required: true, placeholder: 'e.g. Kigali Secondary School', hint: 'Write the full official name of your school.', guidance: { purpose: 'Identifies which school this lesson plan belongs to.', tips: ['Use the full official name of the school', 'Do not use abbreviations'], example: 'Kigali Secondary School', mistakes: 'Avoid using nicknames or short forms.' } },
-          { id: 'teacher', label: 'Teacher\'s Name', type: 'text', required: true, placeholder: 'e.g. Mr. Jean Bosco Nkurunziza', hint: 'Your full name including title (Mr., Mrs., Ms., Dr.).',  guidance: { purpose: 'Records the teacher responsible for this lesson.', tips: ['Include your title', 'Use your name as it appears in official records'], example: 'Mr. Jean Bosco Nkurunziza', mistakes: 'Do not write only a first name.' } },
-          { id: 'subject', label: 'Subject', type: 'text', required: true, placeholder: 'e.g. Mathematics', hint: 'Write the subject as it appears in the official timetable.',  guidance: { purpose: 'Specifies the discipline being taught.', tips: ['Match the official curriculum title exactly'], example: 'Mathematics, English Language, Biology', mistakes: 'Do not use informal names like "Maths" unless that is the official name.' } },
-          { id: 'class', label: 'Class / Level', type: 'text', required: true, placeholder: 'e.g. Senior Two', hint: 'Specify the year and stream of the class.',  guidance: { purpose: 'Identifies the target group of learners.', tips: ['Include the year and stream if applicable', 'e.g. Senior Two, S2A, Form 3B'], example: 'Senior Two (S2A) — 45 learners', mistakes: 'Be specific. "Senior" alone is not enough.' } },
-          { id: 'date', label: 'Date', type: 'date', required: true, hint: 'Select the date this lesson will be taught.',  guidance: { purpose: 'Records when the lesson is scheduled.', tips: ['Use the actual lesson date, not today'], example: '15 October 2025', mistakes: '' } },
-          { id: 'duration', label: 'Duration (minutes)', type: 'number', required: true, placeholder: 'e.g. 40', hint: 'Total time available for this lesson in minutes.',  guidance: { purpose: 'Ensures the lesson is planned within the allocated time.', tips: ['Standard lesson periods range from 35 to 60 minutes', 'Do not plan more than 80% of activities to leave buffer time'], example: '40 minutes', mistakes: 'Do not list hours — always convert to minutes.' } },
-          { id: 'topic', label: 'Topic / Unit', type: 'text', required: true, placeholder: 'e.g. Addition of Fractions', hint: 'The main topic or unit this lesson covers.',  guidance: { purpose: 'States what knowledge area is being addressed.', tips: ['Match the topic in the scheme of work', 'Be specific — not just "Fractions" but "Addition of Fractions"'], example: 'Addition and Subtraction of Fractions with Unlike Denominators', mistakes: 'Do not write a vague title like "Mathematics Lesson".' } },
-          { id: 'subtopic', label: 'Sub-topic (optional)', type: 'text', required: false, placeholder: 'e.g. Unlike Denominators', hint: 'A narrower focus within the main topic, if applicable.',  guidance: { purpose: 'Provides more granularity about what aspect of the topic is taught.', tips: ['Only fill this if the topic has a clear sub-division'], example: 'Unlike Denominators', mistakes: '' } },
-          { id: 'period', label: 'Period Number', type: 'text', required: false, placeholder: 'e.g. Period 3 of 5', hint: 'If this is part of a series of lessons on the same topic, indicate which period.',  guidance: { purpose: 'Helps track continuity across multiple lessons on the same topic.', tips: ['Write as "Period X of Y"'], example: 'Period 2 of 4', mistakes: '' } },
-        ]
-      },
-      {
-        id: 'objective',
-        title: 'Instructional Objective',
-        shortTitle: 'Objective',
-        desc: 'Define what learners will achieve by the end of this lesson.',
-        fields: [
-          { id: 'objective', label: 'Instructional Objective', type: 'textarea', required: true, placeholder: 'By the end of the lesson, every Senior Two learner will be able to...', hint: 'Write one clear, measurable objective using an action verb from Bloom\'s Taxonomy.', validation: [
-            { rule: v => v.toLowerCase().startsWith('by the end of the lesson'), message: 'Must start with "By the end of the lesson..."' },
-            { rule: v => v.length > 30, message: 'Objective must be detailed enough (at least 30 characters)' },
-          ], guidance: { purpose: 'The objective tells you exactly what learners will be able to do after the lesson. It guides your entire planning.', tips: ['Always start with "By the end of the lesson..."', 'Use ONE measurable action verb (e.g. solve, identify, explain, construct)', 'Be specific — avoid vague verbs like "know" or "understand"', 'Name the class and the specific skill'], example: 'By the end of the lesson, every Senior Two learner will be able to add fractions with unlike denominators by finding the Least Common Multiple (LCM) and simplifying the result.', mistakes: 'Avoid: "Students will understand fractions." Instead: "Students will be able to add fractions with unlike denominators."' } },
-          { id: 'bloom_level', label: 'Bloom\'s Taxonomy Level', type: 'select', required: false, options: ['-- Select Level --', 'Knowledge (Remembering)', 'Comprehension (Understanding)', 'Application (Applying)', 'Analysis (Analysing)', 'Synthesis (Evaluating)', 'Evaluation (Creating)'], hint: 'Select the cognitive level this objective targets.',  guidance: { purpose: 'Bloom\'s Taxonomy helps you classify the depth of thinking required.', tips: ['Lower levels: Knowledge, Comprehension are for basic recall', 'Higher levels: Analysis, Synthesis, Evaluation require deeper thinking', 'Mix levels across a unit to build progressively'], example: 'Application (Applying) — learners apply a rule to new problems', mistakes: '' } },
-          { id: 'prerequisites', label: 'Prerequisites / Prior Knowledge', type: 'textarea', required: false, placeholder: 'Learners should already know...', hint: 'What must learners already know before this lesson?',  guidance: { purpose: 'Identifying prerequisites helps you plan the introduction and ensure you do not skip foundational steps.', tips: ['List 2–4 specific things learners should already know', 'If prerequisites are not met, plan a brief review in the Introduction'], example: 'Learners should already know how to find factors of whole numbers and how to write fractions in lowest terms.', mistakes: 'Do not leave this blank — every lesson builds on something prior.' } },
-        ]
-      },
-      {
-        id: 'resources',
-        title: 'Teaching & Learning Resources',
-        shortTitle: 'Resources',
-        desc: 'List all materials, tools, and references needed for this lesson.',
-        fields: [
-          { id: 'teacher_resources', label: 'Teacher\'s Resources', type: 'textarea', required: true, placeholder: 'e.g. Whiteboard, markers, textbook (page 45), chart showing fractions...', hint: 'List everything the teacher will need to deliver this lesson.',  guidance: { purpose: 'Planning resources ensures you are fully prepared before entering the classroom.', tips: ['List all physical and digital materials', 'Include page numbers for textbooks', 'Include reference books you will use for preparation'], example: 'Whiteboard and markers, Mathematics textbook (page 45–47), pre-prepared fraction chart, calculator', mistakes: 'Do not list resources you do not actually plan to use.' } },
-          { id: 'learner_resources', label: 'Learners\' Resources', type: 'textarea', required: true, placeholder: 'e.g. Exercise books, pens, textbook page 45, ruler...', hint: 'List what each learner will need during this lesson.',  guidance: { purpose: 'Ensures learners are equipped to participate fully.', tips: ['List items learners are expected to bring', 'Note if any materials will be distributed by the teacher'], example: 'Mathematics exercise book, pen, pencil, ruler, Mathematics textbook (page 45)', mistakes: 'Do not list teacher resources here.' } },
-          { id: 'reference_books', label: 'Reference Books / Sources', type: 'textarea', required: false, placeholder: 'e.g. REB Mathematics Curriculum, Grade 10...', hint: 'List the curriculum documents and textbooks that informed this lesson.',  guidance: { purpose: 'Shows that your lesson aligns with official curriculum materials.', tips: ['Always cite the official curriculum document', 'Include textbook title, author, and edition'], example: 'Rwanda Education Board. (2019). Mathematics Curriculum for Senior Secondary. Kigali: REB.', mistakes: '' } },
-        ]
-      },
-      {
-        id: 'introduction',
-        title: 'Introduction (Set Induction)',
-        shortTitle: 'Introduction',
-        desc: 'How will you capture learner attention and connect to prior knowledge?',
-        fields: [
-          { id: 'intro_method', label: 'Introduction Method', type: 'select', required: true, options: ['-- Select Method --', 'Review of Previous Lesson', 'Real-Life Problem / Scenario', 'Question and Answer', 'Demonstration', 'Short Story or Analogy', 'Brain Teaser / Puzzle', 'Visual Stimulus (image, chart, video)'],  hint: 'Choose how you will begin the lesson.',  guidance: { purpose: 'A good introduction activates prior knowledge, generates curiosity, and tells learners what they will learn.', tips: ['Choose a method that connects to the topic', 'Keep the introduction to about 5–10% of lesson time', 'Always state the lesson topic and objective at the end of the introduction'], example: 'Show learners two pizzas of different sizes and ask: "If you eat 1/2 of one pizza and 1/3 of another, how much pizza did you eat in total?" This real-life problem introduces the need to add unlike fractions.', mistakes: 'Do not spend more than 10 minutes on the introduction.' } },
-          { id: 'intro_description', label: 'Introduction Description', type: 'textarea', required: true, placeholder: 'Describe exactly what you will say and do during the introduction...', hint: 'Write a detailed description of how you will introduce the lesson. Include what you will say or show.',  guidance: { purpose: 'This is your script for the opening minutes of the lesson.', tips: ['Start with something engaging or surprising', 'Ask at least one question to activate prior knowledge', 'Clearly state the lesson topic and objective before moving on', 'Name specific actions: "I will draw...", "I will ask..."'], example: 'I will draw two circles on the board. I will shade 1/2 of the first and 1/3 of the second. I will ask: "Who can tell me the total shaded area?" After responses, I will explain that today we learn how to add fractions with different denominators.', mistakes: 'Do not begin by simply writing the topic on the board without any engagement.' } },
-          { id: 'intro_duration', label: 'Duration (minutes)', type: 'number', required: true, placeholder: 'e.g. 5',  hint: 'How many minutes will the introduction take?',  guidance: { purpose: 'Ensures the introduction does not consume too much lesson time.', tips: ['Recommended: 5–10 minutes for a 40-minute lesson'], example: '5 minutes', mistakes: '' } },
-        ]
-      },
-      {
-        id: 'development',
-        title: 'Lesson Development',
-        shortTitle: 'Development',
-        desc: 'The main body of the lesson — teacher and learner activities step by step.',
-        fields: [
-          { id: 'activities_desc', label: 'Lesson Development Activities', type: 'activities', required: true, hint: 'Plan the sequence of teacher and learner activities. Add as many steps as needed.',  guidance: { purpose: 'This is the core of your lesson. It maps exactly what happens at every stage.', tips: ['Teacher activities should start with action verbs: Explain, Demonstrate, Ask, Guide, Display, Distribute', 'Learner activities should show active engagement: Answer, Solve, Copy, Discuss, Draw', 'Break the lesson into clear phases', 'Each phase should build on the previous one', 'Include time allocations for each activity'], example: 'Teacher writes 1/2 + 1/3 on board. Asks learners to try solving it. Guides learners to find LCM of 2 and 3. Demonstrates converting to equivalent fractions. Learners copy and solve two practice problems.', mistakes: 'Do not list only what the teacher does. Always include learner activities. Do not write generic steps like "Teach the topic".' } },
-        ]
-      },
-      {
-        id: 'conclusion',
-        title: 'Conclusion (Closure)',
-        shortTitle: 'Conclusion',
-        desc: 'Summarise the lesson and consolidate learning.',
-        fields: [
-          { id: 'conclusion_method', label: 'Closure Method', type: 'select', required: true, options: ['-- Select Method --', 'Oral Summary by Teacher', 'Learners Summarise (Exit Ticket)', 'Question and Answer Review', 'One Thing Learned (Think-Pair-Share)', 'Class Discussion', 'Written Summary'],  hint: 'How will you bring the lesson to a close?',  guidance: { purpose: 'The conclusion consolidates learning and connects the lesson back to the objective.', tips: ['Always revisit the objective: "At the start, we said we would learn to... did we achieve that?"', 'Involve learners in the summary — do not just repeat everything yourself', 'Keep it brief: 5 minutes maximum'], example: 'I will ask three learners to each explain one step of adding unlike fractions. I will then summarise the key steps on the board and confirm the objective has been met.', mistakes: 'Do not end the lesson abruptly without a proper conclusion. Do not introduce new content here.' } },
-          { id: 'conclusion_description', label: 'Conclusion Description', type: 'textarea', required: true, placeholder: 'Describe exactly how you will close the lesson...', hint: 'Describe what you will say and do to close the lesson.', guidance: { purpose: 'Plans the closing moments of your lesson.', tips: ['Reference the lesson objective explicitly', 'Ask at least one review question'], example: 'I will say: "Today we learned to add fractions with unlike denominators. Who can tell me the first step?" After responses, I will quickly write the three-step method on the board as a summary. I will remind learners to review the worked examples on page 47.', mistakes: '' } },
-          { id: 'homework', label: 'Homework / Assignment (optional)', type: 'textarea', required: false, placeholder: 'e.g. Solve exercises 1–5 on page 48 of the textbook.', hint: 'If you are assigning work, describe it clearly.',  guidance: { purpose: 'Extends learning beyond the classroom.', tips: ['Make homework realistic — consider the learner\'s home environment', 'Specify page numbers or exact exercises', 'Ensure the homework relates directly to today\'s lesson'], example: 'Solve exercises 1 to 5 on page 48 of the Mathematics textbook. Due next Monday.', mistakes: 'Do not assign homework that requires resources learners may not have at home.' } },
-        ]
-      },
-      {
-        id: 'assessment',
-        title: 'Assessment',
-        shortTitle: 'Assessment',
-        desc: 'How will you measure whether learners achieved the objective?',
-        fields: [
-          { id: 'assessment_type', label: 'Assessment Type', type: 'select', required: true, options: ['-- Select Type --', 'Formative (During Lesson)', 'Summative (End of Lesson)', 'Both Formative and Summative'],  hint: 'Select when and how assessment will occur.',  guidance: { purpose: 'Assessment verifies whether the lesson objective has been achieved.', tips: ['Formative assessment: checks understanding during the lesson (questions, observations, mini-tasks)', 'Summative assessment: evaluates final achievement at the end'], example: 'Formative: observe learner responses during activities. Summative: quick 3-question written exercise at end of lesson.', mistakes: '' } },
-          { id: 'assessment_method', label: 'Assessment Method', type: 'select', required: true, options: ['-- Select Method --', 'Oral Questions and Answers', 'Written Exercise (classwork)', 'Observation of Learner Activity', 'Group Presentation', 'Exit Ticket (written)', 'Practical Demonstration', 'Peer Assessment'],  hint: 'How exactly will you assess learning?', guidance: { purpose: 'Defines the specific technique you will use.', tips: ['Match the method to the objective', 'If objective says "solve", assess by having learners solve problems', 'Observation is good for practical or group work objectives'], example: 'Oral Q&A during the lesson, followed by a written exercise of 3 problems at the close.', mistakes: 'Do not use assessment methods that do not match the cognitive level of the objective.' } },
-          { id: 'assessment_questions', label: 'Assessment Questions / Tasks', type: 'textarea', required: true, placeholder: 'Write the specific questions or tasks you will use to assess learners...', hint: 'Write at least 2–3 specific questions or tasks. Include the correct answers if applicable.', guidance: { purpose: 'Having prepared questions ensures you do not improvise assessment randomly.', tips: ['Number your questions clearly', 'Include questions at different difficulty levels', 'For each question, note the expected answer or outcome', 'Match questions directly to the lesson objective'], example: '1. What is the LCM of 4 and 6? (Answer: 12)\n2. Add: 1/4 + 1/6. Show your working. (Answer: 5/12)\n3. Challenge: Simplify 3/4 + 5/6 and explain each step.', mistakes: 'Do not write vague tasks like "Ask learners if they understood." Write specific, measurable questions.' } },
-          { id: 'remediation', label: 'Remediation Plan (optional)', type: 'textarea', required: false, placeholder: 'What will you do for learners who did not achieve the objective?', hint: 'Brief note on how you will support learners who struggle.',  guidance: { purpose: 'Shows professional planning for differentiated instruction.', tips: ['Plan at least one remedial action', 'Options: extra practice, one-on-one session, peer tutoring, simplified examples'], example: 'Learners who struggle will receive a step-by-step worked example card during the next lesson. I will also pair them with stronger learners for peer tutoring.', mistakes: '' } },
-        ]
-      },
-      {
-        id: 'reflection',
-        title: 'Teacher\'s Reflection',
-        shortTitle: 'Reflection',
-        desc: 'Complete this after the lesson is taught.',
-        fields: [
-          { id: 'objective_achieved', label: 'Was the objective achieved?', type: 'select', required: false, options: ['-- Select --', 'Fully Achieved (all or most learners)', 'Partially Achieved', 'Not Achieved'], hint: 'Evaluate honestly whether learners reached the objective.',  guidance: { purpose: 'Honest reflection improves future teaching.', tips: ['Be honest — partial achievement is common and normal', 'Consider learner responses and assessment results'], example: 'Partially Achieved — about 70% of learners solved the problems correctly. Five learners struggled with finding the LCM.', mistakes: '' } },
-          { id: 'strengths', label: 'Lesson Strengths', type: 'textarea', required: false, placeholder: 'What worked well in this lesson?', hint: 'Note what went well — activities, explanations, learner engagement.',  guidance: { purpose: 'Identifying strengths helps you replicate good practices.', tips: ['Be specific: name the activity or technique that worked', 'Consider learner enthusiasm and participation level'], example: 'The pizza example in the introduction generated great discussion. Most learners were engaged throughout the development phase.', mistakes: '' } },
-          { id: 'improvements', label: 'Areas for Improvement', type: 'textarea', required: false, placeholder: 'What would you change or improve next time?', hint: 'Identify specific areas to improve for future lessons.',  guidance: { purpose: 'Professional growth comes from honest reflection on what to improve.', tips: ['Focus on specific moments or activities, not general statements', 'Suggest a specific alternative approach'], example: 'The written exercise at the end was too long for the remaining time. Next time, I will reduce it to 2 questions or start it 5 minutes earlier.', mistakes: 'Do not write "Everything was fine" if you encountered any challenges.' } },
-          { id: 'follow_up', label: 'Follow-up Actions', type: 'textarea', required: false, placeholder: 'What will you do in the next lesson based on what happened today?', hint: 'How will the next lesson build on or address issues from this one?',  guidance: { purpose: 'Links this lesson to the next for curriculum continuity.', tips: ['If objectives were not fully met, plan revision at the start of the next lesson', 'Note specific learner needs to address'], example: 'Begin next lesson with a 5-minute review of today\'s steps. Create extra practice exercises for the five learners who struggled with LCM.', mistakes: '' } },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'scheme',
-    name: 'Scheme of Work',
-    icon: '🗓️',
-    desc: 'A long-range plan that sequences topics and learning outcomes across a term or year.',
-    badge: 'Term Plan',
-    steps: [
-      { id: 'scheme_info', title: 'Scheme Header', shortTitle: 'Header', desc: 'Basic identification information for this scheme.',
-        fields: [
-          { id: 'school', label: 'School Name', type: 'text', required: true, placeholder: 'e.g. Kigali Secondary School', hint: 'Full official name of the school.', guidance: { purpose: 'Identifies the school.', tips: ['Use the full official name'], example: 'Kigali Secondary School', mistakes: '' } },
-          { id: 'teacher', label: 'Teacher\'s Name', type: 'text', required: true, placeholder: 'e.g. Mrs. Agathe Uwimana', hint: 'Full name with title.', guidance: { purpose: 'Records who prepared the scheme.', tips: ['Include title (Mr., Mrs., Ms.)'], example: 'Mrs. Agathe Uwimana', mistakes: '' } },
-          { id: 'subject', label: 'Subject', type: 'text', required: true, placeholder: 'e.g. Biology', hint: 'Official subject name.', guidance: { purpose: '', tips: [], example: 'Biology', mistakes: '' } },
-          { id: 'class', label: 'Class / Level', type: 'text', required: true, placeholder: 'e.g. Senior Three', hint: '', guidance: { purpose: '', tips: [], example: 'Senior Three', mistakes: '' } },
-          { id: 'term', label: 'Term', type: 'select', required: true, options: ['-- Select Term --', 'Term One', 'Term Two', 'Term Three'], hint: 'Which school term does this scheme cover?', guidance: { purpose: '', tips: [], example: 'Term One', mistakes: '' } },
-          { id: 'year', label: 'Academic Year', type: 'text', required: true, placeholder: 'e.g. 2025–2026', hint: '', guidance: { purpose: '', tips: [], example: '2025–2026', mistakes: '' } },
-        ]
-      },
-      { id: 'scheme_weeks', title: 'Weekly Plan', shortTitle: 'Weekly Plan', desc: 'Enter the topics and content for each week of the term.',
-        fields: [
-          { id: 'weekly_plan', label: 'Weekly Scheme', type: 'scheme_table', required: true, hint: 'Fill in the topic, subtopic, teaching methods, resources, and competency for each week.', guidance: { purpose: 'The scheme of work is the master plan for the term. It ensures topics are covered in the right order and within the available time.', tips: ['Be realistic — match topics to the time available', 'Align with the official curriculum', 'Group related subtopics into single weeks where appropriate', 'Include any revision or assessment weeks'], example: 'Week 1: Introduction to Cells — Cell Theory, Cell Structure, resources: microscopes, textbook p.1-10', mistakes: 'Do not squeeze too many topics into one week.' } }
-        ]
-      },
-    ]
-  },
-  {
-    id: 'record_work',
-    name: 'Record of Work Covered',
-    icon: '✅',
-    desc: 'A log of lessons actually taught — compared against the planned scheme of work.',
-    badge: 'Ongoing',
-    steps: [
-      { id: 'row_info', title: 'Record Header', shortTitle: 'Header', desc: 'Identify the teacher, subject, and class for this record.',
-        fields: [
-          { id: 'school', label: 'School Name', type: 'text', required: true, placeholder: 'e.g. Muhanga High School', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'teacher', label: 'Teacher\'s Name', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'subject', label: 'Subject', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'class', label: 'Class', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'term', label: 'Term', type: 'select', required: true, options: ['-- Select --', 'Term One', 'Term Two', 'Term Three'], hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'year', label: 'Academic Year', type: 'text', required: true, placeholder: 'e.g. 2025', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-        ]
-      },
-      { id: 'row_entries', title: 'Work Entries', shortTitle: 'Entries', desc: 'Log each lesson taught with date, topic, and remarks.',
-        fields: [
-          { id: 'work_entries', label: 'Work Covered Log', type: 'record_table', required: true, hint: 'Record each lesson taught, including what was planned and what was actually covered.', guidance: { purpose: 'The Record of Work Covered is a legal document that proves you actually taught the curriculum. It protects you and the school.', tips: ['Fill this in immediately after each lesson', 'If you covered less than planned, write the reason', 'If you covered more, record that too'], example: '15/10/2025 — Addition of Fractions — Covered up to unlike denominators. Did not reach simplification due to time. To be continued.', mistakes: 'Do not fill this in advance. It must reflect what actually happened.' } }
-        ]
-      },
-    ]
-  },
-  {
-    id: 'assessment_book',
-    name: 'Assessment Record Book',
-    icon: '📊',
-    desc: 'A mark book for recording and tracking learner scores and grades across assessments.',
-    badge: 'Mark Book',
-    steps: [
-      { id: 'assess_info', title: 'Mark Book Header', shortTitle: 'Header', desc: 'Set up your assessment record book.',
-        fields: [
-          { id: 'teacher', label: 'Teacher\'s Name', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'subject', label: 'Subject', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'class', label: 'Class', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'term', label: 'Term', type: 'select', required: true, options: ['-- Select --', 'Term One', 'Term Two', 'Term Three'], hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'total_learners', label: 'Number of Learners', type: 'number', required: true, placeholder: 'e.g. 45', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-        ]
-      },
-      { id: 'assess_setup', title: 'Assessment Setup', shortTitle: 'Setup', desc: 'Define the assessments you will track.',
-        fields: [
-          { id: 'assessments_list', label: 'Assessments to Track', type: 'assessments_setup', required: true, hint: 'Add each assessment (test, quiz, exam) with its name, date, and maximum marks.', guidance: { purpose: 'Setting up your mark book structure before adding scores ensures consistency.', tips: ['Plan at least 3–5 assessments per term', 'Include formative (quizzes) and summative (exams)', 'Record the maximum mark for each assessment'], example: 'Quiz 1 (10 marks), Class Test 1 (30 marks), Mid-term Exam (50 marks), Quiz 2 (10 marks)', mistakes: 'Do not create assessments with inconsistent maximum marks unless you normalise them.' } }
-        ]
-      },
-    ]
-  },
-  {
-    id: 'lesson_notes',
-    name: 'Lesson Notes',
-    icon: '📝',
-    desc: 'Detailed content notes for a lesson — the subject matter the teacher will teach.',
-    badge: 'Content',
-    steps: [
-      { id: 'notes_info', title: 'Notes Header', shortTitle: 'Header', desc: 'Identify the subject, class, and topic for these notes.',
-        fields: [
-          { id: 'teacher', label: 'Teacher\'s Name', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'subject', label: 'Subject', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'class', label: 'Class', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'topic', label: 'Topic', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'date', label: 'Date', type: 'date', required: true, hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-        ]
-      },
-      { id: 'notes_content', title: 'Content Notes', shortTitle: 'Content', desc: 'Write the detailed subject content for this lesson.',
-        fields: [
-          { id: 'key_concepts', label: 'Key Concepts / Definitions', type: 'textarea', required: true, placeholder: 'List and explain the key terms and concepts in this lesson...', hint: 'Define all important terms clearly and simply.', guidance: { purpose: 'Lesson notes ensure you have mastered the content before entering the classroom.', tips: ['Define each concept clearly', 'Use simple language first, then technical language', 'Include examples for each concept'], example: 'Fraction: A fraction represents a part of a whole. It is written as a/b where a is the numerator and b is the denominator.\nLCM: The Least Common Multiple is the smallest number that is a multiple of two or more numbers.', mistakes: 'Do not copy from the textbook verbatim. Write in your own words.' } },
-          { id: 'worked_examples', label: 'Worked Examples', type: 'textarea', required: true, placeholder: 'Write fully worked examples with step-by-step solutions...', hint: 'Provide at least 2 worked examples showing the solution process step by step.', guidance: { purpose: 'Worked examples are the core of lesson notes — they show exactly how to solve problems.', tips: ['Number each example', 'Show every step — do not skip steps', 'Explain each step in words', 'Include at least one easy and one harder example'], example: 'Example 1: Find 1/2 + 1/3\nStep 1: Find LCM of 2 and 3 → LCM = 6\nStep 2: Convert: 1/2 = 3/6 and 1/3 = 2/6\nStep 3: Add: 3/6 + 2/6 = 5/6\nAnswer: 5/6', mistakes: 'Do not write only the final answer. Always show working.' } },
-          { id: 'practice_problems', label: 'Practice Problems for Learners', type: 'textarea', required: false, placeholder: 'Write practice questions learners will solve...', hint: 'Provide problems learners will work on during the lesson.', guidance: { purpose: 'Practice problems allow learners to apply what they have learned.', tips: ['Start with easier problems and increase difficulty', 'Include at least 3–5 problems', 'Provide answers or a marking scheme'], example: '1. Solve: 1/4 + 1/4  (Answer: 1/2)\n2. Solve: 1/3 + 1/6  (Answer: 1/2)\n3. Solve: 2/5 + 1/3  (Answer: 11/15)', mistakes: '' } },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'diary',
-    name: "Teacher's Diary",
-    icon: '📔',
-    desc: "A daily personal record of teaching activities, observations, and professional notes.",
-    badge: 'Daily Log',
-    steps: [
-      { id: 'diary_info', title: 'Diary Header', shortTitle: 'Header', desc: '',
-        fields: [
-          { id: 'teacher', label: 'Teacher\'s Name', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'school', label: 'School', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'week_of', label: 'Week of (Date)', type: 'date', required: true, hint: 'Enter the Monday of the week.', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-        ]
-      },
-      { id: 'diary_entries', title: 'Daily Entries', shortTitle: 'Daily Entries', desc: 'Record your activities for each day of the week.',
-        fields: [
-          { id: 'diary_day', label: 'Daily Diary Entries', type: 'diary_table', required: true, hint: 'Fill in your teaching activities, observations, and notes for each day.', guidance: { purpose: "The teacher's diary is a professional journal. It helps you track your teaching, note learner progress, and plan improvements.", tips: ['Write every day — even brief entries are valuable', 'Note anything unusual: absent learners, disruptions, excellent responses', 'Record personal professional development activities'], example: "Monday: Taught S2A — fractions. Good engagement. 3 learners absent. Set homework (page 48). Note: James struggles with LCM — check next lesson.", mistakes: 'Do not leave the diary empty at the end of the week.' } }
-        ]
-      },
-    ]
-  },
-  {
-    id: 'attendance',
-    name: 'Attendance Register',
-    icon: '📋',
-    desc: 'A class register for recording learner attendance for each lesson.',
-    badge: 'Register',
-    steps: [
-      { id: 'att_info', title: 'Register Header', shortTitle: 'Header', desc: '',
-        fields: [
-          { id: 'school', label: 'School', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'class', label: 'Class', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'teacher', label: 'Class Teacher', type: 'text', required: true, placeholder: '', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'term', label: 'Term', type: 'select', required: true, options: ['-- Select --', 'Term One', 'Term Two', 'Term Three'], hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'year', label: 'Academic Year', type: 'text', required: true, placeholder: 'e.g. 2025', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-          { id: 'total_learners', label: 'Number of Learners', type: 'number', required: true, placeholder: 'e.g. 42', hint: '', guidance: { purpose: '', tips: [], example: '', mistakes: '' } },
-        ]
-      },
-      { id: 'att_learners', title: 'Learner List', shortTitle: 'Learner List', desc: 'Enter the names of learners in your register.',
-        fields: [
-          { id: 'learner_list', label: 'Learner Names', type: 'learner_list', required: true, hint: 'Enter the full names of all learners. These will form your register.', guidance: { purpose: 'A complete learner list enables accurate attendance tracking.', tips: ['Enter names in alphabetical order by surname', 'Double-check spellings against official school records', 'Include registration numbers if required'], example: 'HAKIZIMANA Jean Pierre\nIMANA Claudette\nMUTABYAZI Eric', mistakes: 'Do not use nicknames. Use official names as registered.' } }
-        ]
-      },
-    ]
-  },
+
+// ---- SCHEME OF WORK (CBC) ----
+{
+  id: 'scheme',
+  name: 'Scheme of Work',
+  icon: '🗓️',
+  desc: 'CBC term plan — official REB format with weeks, units, learning objectives, teaching methods and evaluation.',
+  badge: 'CBC Official',
+  steps: [
+    {
+      id: 'sow_header', title: 'Header Information', shortTitle: 'Header',
+      desc: 'Academic year, term, school, subject, class and teacher details.',
+      fields: [
+        { id:'academic_year', label:'Academic Year', type:'text', required:true, placeholder:'e.g. 2025 – 2026', hint:'Write the full academic year.', guidance:{purpose:'Identifies which academic year this scheme covers.',tips:['Use format: 2025 – 2026'],example:'2025 – 2026',mistakes:''} },
+        { id:'term', label:'Term', type:'select', required:true, options:['-- Select --','Term 1','Term 2','Term 3'], hint:'Which school term?', guidance:{purpose:'Specifies the term this scheme covers.',tips:['Select the correct term'],example:'Term 1',mistakes:''} },
+        { id:'school', label:'School Name', type:'text', required:true, placeholder:'e.g. G.S. Mukarange Catholic', hint:'Full official school name.', guidance:{purpose:'Identifies the school.',tips:['Use the full official name'],example:'G.S. Mukarange Catholic',mistakes:''} },
+        { id:'subject', label:'Subject', type:'text', required:true, placeholder:'e.g. Mathematics', hint:'Official subject name as in the curriculum.', guidance:{purpose:'Names the subject.',tips:['Match the official curriculum title exactly'],example:'Mathematics',mistakes:''} },
+        { id:'class_combo', label:'Class + Combination', type:'text', required:true, placeholder:'e.g. S2 / MPC', hint:'Class level and combination/stream.', guidance:{purpose:'Identifies the target class.',tips:['Include both class and combination: S2 / MPC'],example:'S2 / MPC',mistakes:''} },
+        { id:'periods_per_week', label:'Number of Periods per Week', type:'number', required:true, placeholder:'e.g. 4', hint:'How many lesson periods per week for this subject?', guidance:{purpose:'Used to plan the pacing of topics.',tips:['Check your timetable'],example:'4',mistakes:''} },
+        { id:'teacher_name', label:'Teacher\'s Name', type:'text', required:true, placeholder:'e.g. Mr. Jean Bosco Nkurunziza', hint:'Full name with title.', guidance:{purpose:'Records the teacher responsible.',tips:['Include title: Mr., Mrs., Ms.'],example:'Mr. Jean Bosco Nkurunziza',mistakes:''} },
+      ]
+    },
+    {
+      id: 'sow_units', title: 'Units & Weekly Plan', shortTitle: 'Weekly Plan',
+      desc: 'Fill in each unit: number of weeks, lesson titles, learning objectives, teaching methods, and resources.',
+      fields: [
+        { id:'sow_rows', label:'Scheme of Work — Units & Lessons', type:'sow_table', required:true,
+          hint:'Enter each unit with its weeks, lesson titles, objectives (Knowledge & Understanding, Skills, Attitudes & Values), teaching methods, resources, and observations.',
+          guidance:{
+            purpose:'The scheme of work maps the entire term — ensuring topics are covered in the right order, with proper pacing.',
+            tips:['Each unit typically has 2 periods (Double) and 1–2 single lessons','Learning objectives must cover: a) Knowledge & Understanding  b) Skills  c) Attitudes & Values','Align with the official REB curriculum document','Include a Summative Evaluation at the end of each unit'],
+            example:'Unit 1: Sets — Week 1–2 — Lesson 1: Introduction to sets. Objectives: a) Define a set and list elements b) Draw Venn diagrams c) Appreciate the use of sets in real life.',
+            mistakes:'Do not leave objectives empty. Do not skip the Summative Evaluation row.'
+          }
+        },
+      ]
+    },
+  ]
+},
+
+// ---- LESSON PLAN (CBC) ----
+{
+  id: 'lesson_plan',
+  name: 'Lesson Plan',
+  icon: '📖',
+  desc: 'CBC lesson plan — official REB format with objectives, learning activities (Introduction / Development / Conclusion), generic competences and teacher self-evaluation.',
+  badge: 'CBC Official',
+  steps: [
+    {
+      id: 'lp_header', title: 'Lesson Header', shortTitle: 'Header',
+      desc: 'School, teacher, term, unit, class, duration, and special educational needs.',
+      fields: [
+        { id:'school', label:'School Name', type:'text', required:true, placeholder:'e.g. G.S. Mukarange Catholic', hint:'', guidance:{purpose:'Identifies the school.',tips:['Full official name'],example:'G.S. Mukarange Catholic',mistakes:''} },
+        { id:'teacher_name', label:'Teacher\'s Name', type:'text', required:true, placeholder:'e.g. Mr. Jean Bosco', hint:'', guidance:{purpose:'Records the teacher.',tips:['Include title'],example:'Mr. Jean Bosco Nkurunziza',mistakes:''} },
+        { id:'term', label:'Term', type:'select', required:true, options:['-- Select --','Term 1','Term 2','Term 3'], hint:'', guidance:{purpose:'',tips:[],example:'Term 1',mistakes:''} },
+        { id:'date', label:'Date', type:'date', required:true, hint:'Date this lesson will be taught.', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'subject', label:'Subject', type:'text', required:true, placeholder:'e.g. Mathematics', hint:'', guidance:{purpose:'',tips:['Match official curriculum title'],example:'Mathematics',mistakes:''} },
+        { id:'class_level', label:'Class', type:'text', required:true, placeholder:'e.g. S2', hint:'', guidance:{purpose:'',tips:[],example:'S2',mistakes:''} },
+        { id:'unit_no', label:'Unit No.', type:'text', required:true, placeholder:'e.g. 1', hint:'', guidance:{purpose:'',tips:[],example:'1',mistakes:''} },
+        { id:'lesson_no', label:'Lesson No.', type:'text', required:true, placeholder:'e.g. 1', hint:'', guidance:{purpose:'',tips:[],example:'1',mistakes:''} },
+        { id:'duration', label:'Duration (minutes)', type:'number', required:true, placeholder:'e.g. 40', hint:'Total lesson time in minutes.', guidance:{purpose:'',tips:['Standard is 40 minutes'],example:'40',mistakes:''} },
+        { id:'class_size', label:'Class Size (No. of learners)', type:'number', required:true, placeholder:'e.g. 42', hint:'', guidance:{purpose:'',tips:[],example:'42',mistakes:''} },
+        { id:'sen', label:'Type of Special Educational Needs & number of learners', type:'textarea', required:false, placeholder:'e.g. Visual impairment: 1 learner — seat at the front. None identified.', hint:'Describe any SEN in this class and the number of affected learners.', guidance:{purpose:'The CBC requires teachers to identify and plan for learners with special educational needs.',tips:['If no SEN identified, write: None identified','If SEN exist, describe the type and number'],example:'Hearing impairment: 1 learner — will be seated at the front and given written instructions.',mistakes:'Do not leave blank — write "None identified" if none.'} },
+      ]
+    },
+    {
+      id: 'lp_unit', title: 'Unit & Lesson Identification', shortTitle: 'Unit Info',
+      desc: 'Unit title, key unit competence, lesson title, instructional objectives, plan for class, learning materials, and references.',
+      fields: [
+        { id:'unit_title', label:'Unit Title', type:'text', required:true, placeholder:'e.g. Sets and Venn Diagrams', hint:'The title of the unit this lesson belongs to.', guidance:{purpose:'Links the lesson to the unit in the scheme of work.',tips:['Copy exactly from your scheme of work'],example:'Sets and Venn Diagrams',mistakes:''} },
+        { id:'key_unit_competence', label:'Key Unit Competence', type:'textarea', required:true, placeholder:'e.g. To be able to use sets and Venn diagrams to solve real-life problems.', hint:'The overall competence learners should achieve by the end of the unit.', guidance:{purpose:'The Key Unit Competence is taken from the official REB curriculum. It defines what the unit is building toward.',tips:['Copy from the official REB curriculum document for your subject','It applies to the whole unit, not just this lesson'],example:'To be able to use sets and Venn diagrams to solve real-life problems involving classification.',mistakes:'Do not confuse this with the lesson objective. This covers the whole unit.'} },
+        { id:'lesson_title', label:'Title of the Lesson', type:'text', required:true, placeholder:'e.g. Introduction to Sets', hint:'The specific title of this individual lesson.', guidance:{purpose:'Identifies the exact lesson within the unit.',tips:['Should match your scheme of work'],example:'Introduction to Sets',mistakes:''} },
+        { id:'objectives', label:'Instructional Objective(s)', type:'textarea', required:true, placeholder:'By the end of the lesson, learners will be able to:\n1. Define a set using the correct mathematical notation.\n2. List the elements of a given set.\n3. Distinguish between finite and infinite sets.', hint:'List 2–4 specific, measurable objectives. Start with "By the end of the lesson, learners will be able to:"', validation:[
+          {rule:v=>v.toLowerCase().includes('by the end'),message:'Should include "By the end of the lesson..."'},
+          {rule:v=>v.length>40,message:'Objectives must be sufficiently detailed'},
+        ], guidance:{purpose:'The instructional objectives define exactly what learners will achieve in this lesson.',tips:['Start with: "By the end of the lesson, learners will be able to:"','Use action verbs: define, calculate, draw, explain, compare, classify','Write 2–4 objectives — not too many for one lesson','Each objective should be measurable'],example:'By the end of the lesson, learners will be able to:\n1. Define a set and write it using correct notation.\n2. List elements of a given set.\n3. Distinguish between finite and infinite sets.',mistakes:'Avoid vague verbs: "understand", "know", "appreciate". Use: "define", "calculate", "draw".'} },
+        { id:'plan_location', label:'Plan for this Class (location)', type:'select', required:true, options:['-- Select --','Inside classroom','Outside classroom','Laboratory','Library','Field'], hint:'Where will this lesson be conducted?', guidance:{purpose:'Planning the location ensures the space is prepared in advance.',tips:['Most lessons: inside classroom','Practical lessons may be outside or in lab'],example:'Inside classroom',mistakes:''} },
+        { id:'learning_materials', label:'Learning Materials', type:'textarea', required:true, placeholder:'e.g. Textbook (page 12–15), whiteboard, markers, printed worksheet, geometric shapes cut-outs...', hint:'List all materials both teacher and learners will use.', guidance:{purpose:'Ensures you are fully prepared before entering the classroom.',tips:['List page numbers for textbooks','Include both teacher and learner materials','Mention any visual aids, models, or technology'],example:'Mathematics textbook S2 (page 12–15), whiteboard, markers, coloured circles cut-outs for Venn diagrams, printed worksheet.',mistakes:'Do not list materials you will not actually use.'} },
+        { id:'references', label:'References', type:'textarea', required:false, placeholder:'e.g. REB Mathematics Curriculum, S2. Kigali: REB (2019), page 5–8.', hint:'List the curriculum documents and textbooks that informed this lesson.', guidance:{purpose:'Shows that your lesson aligns with official curriculum materials.',tips:['Always cite the REB curriculum document','Include textbook title and page numbers'],example:'REB (2019). Mathematics Curriculum for Senior Secondary. Kigali: REB. Pages 5–8.',mistakes:''} },
+      ]
+    },
+    {
+      id: 'lp_activities', title: 'Learning Activities', shortTitle: 'Activities',
+      desc: 'Plan teacher activities, learner activities, and generic competences for Introduction, Lesson Development, and Conclusion.',
+      fields: [
+        { id:'lp_act_table', label:'Teaching & Learning Activities', type:'lp_activities_table', required:true,
+          hint:'Fill in the timing, teacher activities, learner activities, and generic competences addressed for each phase (Introduction, Development, Conclusion).',
+          guidance:{
+            purpose:'This is the heart of the lesson plan. It shows exactly what happens at each stage.',
+            tips:['Teacher activities: start with action verbs — Explain, Ask, Demonstrate, Guide, Distribute, Show','Learner activities: must be active — Answer, Solve, Discuss, Draw, Present, Calculate','Generic competences to address: Critical thinking, Communication, Cooperation, Research, Problem-solving, Lifelong learning, Creativity','Cross-cutting issues: Gender, Environment, Peace, HIV/AIDS prevention, Inclusive education, Financial education'],
+            example:'Introduction (5 min): Teacher asks: "Can you name a group of objects that share something in common?" Learners give examples. Teacher connects to concept of sets.',
+            mistakes:'Do not leave learner activities empty — the CBC requires active learning. Do not write only "Teach the content".'
+          }
+        },
+      ]
+    },
+    {
+      id: 'lp_eval', title: 'Teacher Self-Evaluation', shortTitle: 'Self-Evaluation',
+      desc: 'Reflect on the lesson after teaching it.',
+      fields: [
+        { id:'self_eval', label:'Teacher\'s Self-Evaluation', type:'textarea', required:false, placeholder:'Reflect on: Were objectives achieved? What worked well? What would you change? How did learners respond? Were there any challenges?', hint:'Complete this AFTER teaching the lesson.', guidance:{purpose:'Self-evaluation is required by the CBC to promote reflective teaching.',tips:['Be honest — identify what worked and what did not','Reference specific activities or learner responses','Note what you will do differently next time'],example:'Objectives were mostly achieved. Learners engaged well with the cut-out activity. However, 5 learners struggled with notation. Next time I will provide additional worked examples before the activity.',mistakes:'Do not leave blank or write "Everything was fine" without specifics.'} },
+      ]
+    },
+  ]
+},
+
+// ---- CLASS DIARY ----
+{
+  id: 'class_diary',
+  name: 'Class Diary',
+  icon: '📔',
+  desc: 'Official Rwanda Ministry of Education Class Diary — daily record of lessons taught.',
+  badge: 'MoE Official',
+  steps: [
+    {
+      id: 'diary_header', title: 'Diary Header', shortTitle: 'Header',
+      desc: 'Teacher name, class, and the date/week.',
+      fields: [
+        { id:'teacher_name', label:'Teacher\'s Name', type:'text', required:true, placeholder:'e.g. Mr. Jean Bosco Nkurunziza', hint:'', guidance:{purpose:'',tips:['Include title'],example:'Mr. Jean Bosco Nkurunziza',mistakes:''} },
+        { id:'class', label:'Class', type:'text', required:true, placeholder:'e.g. S2A', hint:'', guidance:{purpose:'',tips:[],example:'S2A',mistakes:''} },
+        { id:'week_date', label:'Week / Date', type:'text', required:true, placeholder:'e.g. 13th October 2025', hint:'The date or week this diary page covers.', guidance:{purpose:'',tips:['Write as: the __ (date)'],example:'13th October 2025',mistakes:''} },
+      ]
+    },
+    {
+      id: 'diary_entries', title: 'Daily Lesson Entries', shortTitle: 'Daily Entries',
+      desc: 'Record each lesson taught: times, subject, matter/topic, application, and observations.',
+      fields: [
+        { id:'diary_rows', label:'Daily Lessons', type:'diary_table', required:true,
+          hint:'Fill in one row per lesson period. Times: the period time. Subject: the subject taught. Matter: the unit/matter. Topic: the specific topic. Application: what was done. Observation: any notes.',
+          guidance:{
+            purpose:'The Class Diary is an official school record. It proves what was taught and when.',
+            tips:['Fill in the diary each day — do not fill in advance','Record the actual topic taught, not what was planned','Observations: note absentees, classroom issues, or notable learner performance'],
+            example:'Times: 7:00–7:40 | Subject: Mathematics | Matter: Unit 1 – Sets | Topic: Introduction to Sets | Application: Explanation and Q&A | Observation: 3 learners absent',
+            mistakes:'Do not leave rows blank if a lesson was taught. Record the homework at the bottom.'
+          }
+        },
+      ]
+    },
+    {
+      id: 'diary_hw', title: 'Homework', shortTitle: 'Homework',
+      desc: 'Record any homework assigned.',
+      fields: [
+        { id:'homework', label:'Homework Assigned', type:'textarea', required:false, placeholder:'e.g. Solve exercises 1–5 on page 15 of the Mathematics textbook. Due: Friday.', hint:'Describe the homework given to learners, if any.', guidance:{purpose:'Homework is tracked in the official diary.',tips:['Be specific: include page numbers and exercise numbers','State the due date'],example:'Mathematics: Solve Ex. 1 No. 1–5, page 15. Due: Wednesday.',mistakes:'Write "None" if no homework was given.'} },
+      ]
+    },
+  ]
+},
+
+// ---- RECORD OF WORK COVERED ----
+{
+  id: 'record_work',
+  name: 'Record of Work Covered',
+  icon: '✅',
+  desc: 'A log of lessons actually taught — compared against the planned scheme of work.',
+  badge: 'Ongoing',
+  steps: [
+    {
+      id: 'row_header', title: 'Record Header', shortTitle: 'Header', desc: '',
+      fields: [
+        { id:'school', label:'School', type:'text', required:true, placeholder:'', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'teacher_name', label:'Teacher\'s Name', type:'text', required:true, placeholder:'', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'subject', label:'Subject', type:'text', required:true, placeholder:'', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'class', label:'Class', type:'text', required:true, placeholder:'', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'term', label:'Term', type:'select', required:true, options:['-- Select --','Term 1','Term 2','Term 3'], hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'year', label:'Academic Year', type:'text', required:true, placeholder:'e.g. 2025', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+      ]
+    },
+    {
+      id: 'row_entries', title: 'Work Entries', shortTitle: 'Entries', desc: 'Log each lesson taught.',
+      fields: [
+        { id:'work_rows', label:'Work Covered Log', type:'record_table', required:true,
+          hint:'Record each lesson with date, period, planned topic, actually covered, and remarks.',
+          guidance:{purpose:'The Record of Work Covered is a legal document proving you taught the curriculum.',tips:['Fill in after each lesson, not in advance','If less was covered than planned, state the reason'],example:'15/10/2025 — Period 2 — Sets: Introduction — Covered definition and notation only. Simplification to continue next lesson.',mistakes:'Do not fill this in advance.'}
+        },
+      ]
+    },
+  ]
+},
+
+// ---- ASSESSMENT RECORD BOOK ----
+{
+  id: 'assessment_book',
+  name: 'Assessment Record Book',
+  icon: '📊',
+  desc: 'Mark book for recording and tracking learner scores across assessments.',
+  badge: 'Mark Book',
+  steps: [
+    {
+      id: 'ab_header', title: 'Mark Book Header', shortTitle: 'Header', desc: '',
+      fields: [
+        { id:'teacher_name', label:'Teacher\'s Name', type:'text', required:true, placeholder:'', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'subject', label:'Subject', type:'text', required:true, placeholder:'', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'class', label:'Class', type:'text', required:true, placeholder:'', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'term', label:'Term', type:'select', required:true, options:['-- Select --','Term 1','Term 2','Term 3'], hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+        { id:'class_size', label:'Number of Learners', type:'number', required:true, placeholder:'e.g. 45', hint:'', guidance:{purpose:'',tips:[],example:'',mistakes:''} },
+      ]
+    },
+    {
+      id: 'ab_setup', title: 'Assessment Setup', shortTitle: 'Assessments', desc: 'Define the assessments you will track.',
+      fields: [
+        { id:'assessments_rows', label:'Assessments', type:'assessments_setup', required:true,
+          hint:'Add each assessment with its name, date, and maximum marks.',
+          guidance:{purpose:'Planning assessments in advance ensures consistent tracking.',tips:['Include both formative and summative assessments','Record max marks for each'],example:'Quiz 1 (10 marks), Class Test 1 (30 marks), Mid-term (50 marks)',mistakes:''} },
+      ]
+    },
+  ]
+},
+
 ];
 
-// ===== ACTIVITY DATA =====
-const activitiesData = {};  // will hold table rows per doc
-
-// ===== RENDER DASHBOARD =====
-function renderDashboard() {
-  const grid = document.getElementById('docGrid');
-  grid.innerHTML = DOC_TYPES.map(dt => `
-    <div class="doc-card" onclick="startDocument('${dt.id}')">
+// =========================================================
+// RENDER DASHBOARD
+// =========================================================
+function renderDashboard(){
+  document.getElementById('docGrid').innerHTML = DOC_TYPES.map(dt=>`
+    <div class="doc-card" onclick="startDoc('${dt.id}')">
       <div class="doc-card-icon">${dt.icon}</div>
       <h3>${dt.name}</h3>
       <p>${dt.desc}</p>
       <span class="doc-card-badge">${dt.badge}</span>
-    </div>
-  `).join('');
-
-  renderRecentDocs();
+    </div>`).join('');
+  renderRecent();
 }
 
-function renderRecentDocs() {
-  const el = document.getElementById('recentList');
-  if (state.recentDocs.length === 0) {
-    el.innerHTML = '<div class="recent-empty"><span>📂</span>No documents yet. Create your first document above to get started.</div>';
-    return;
-  }
-  el.innerHTML = '<div class="recent-list">' + state.recentDocs.slice().reverse().map(doc => `
-    <div class="recent-item" onclick="continueDocument('${doc.id}', '${doc.typeId}')">
+function renderRecent(){
+  const el=document.getElementById('recentList');
+  if(!S.recentDocs.length){el.innerHTML='<div class="recent-empty"><span>📂</span>No documents yet.</div>';return;}
+  el.innerHTML='<div class="recent-list">'+S.recentDocs.slice().reverse().map(doc=>{
+    const dt=DOC_TYPES.find(d=>d.id===doc.typeId);
+    return`<div class="recent-item" onclick="continueDoc('${doc.id}','${doc.typeId}')">
       <div class="recent-item-left">
-        <div class="recent-item-icon">${DOC_TYPES.find(d=>d.id===doc.typeId)?.icon || '📄'}</div>
-        <div>
-          <div class="recent-item-name">${doc.title || 'Untitled Document'}</div>
-          <div class="recent-item-meta">${DOC_TYPES.find(d=>d.id===doc.typeId)?.name} · Last edited ${doc.date}</div>
-        </div>
+        <div class="recent-item-icon">${dt?.icon||'📄'}</div>
+        <div><div class="recent-item-name">${doc.title||'Untitled'}</div><div class="recent-item-meta">${dt?.name} · ${doc.date}</div></div>
       </div>
-      <div class="recent-item-progress">
-        <div class="progress-dot"></div>
-        ${doc.progress}% complete
-      </div>
-    </div>
-  `).join('') + '</div>';
+      <div class="recent-item-progress"><div class="progress-dot"></div>${doc.progress}%</div>
+    </div>`;}).join('')+'</div>';
 }
 
-// ===== START DOCUMENT =====
-function startDocument(typeId) {
-  const docType = DOC_TYPES.find(d => d.id === typeId);
-  if (!docType) return;
-  state.currentDoc = docType;
-  state.currentStep = 0;
-  state.formData = {};
-  activitiesData[typeId] = activitiesData[typeId] || {};
+// =========================================================
+// START / CONTINUE DOC
+// =========================================================
+function startDoc(typeId){
+  const dt=DOC_TYPES.find(d=>d.id===typeId);
+  if(!dt)return;
+  S.currentDoc=dt; S.currentStep=0; S.formData={}; S.tableData={};
+  document.getElementById('previewBtn').style.display='';
+  document.getElementById('saveBtn').style.display='';
   showScreen('builderScreen');
   renderBuilder();
 }
 
-function continueDocument(docId, typeId) {
-  const saved = state.recentDocs.find(d => d.id === docId);
-  if (saved) state.formData = saved.formData || {};
-  startDocument(typeId);
+function continueDoc(docId,typeId){
+  const saved=S.recentDocs.find(d=>d.id===docId);
+  if(saved){S.formData=JSON.parse(JSON.stringify(saved.formData||{}));S.tableData=JSON.parse(JSON.stringify(saved.tableData||{}));}
+  startDoc(typeId);
 }
 
-// ===== SHOW SCREEN =====
-function showScreen(screenId) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(screenId).classList.add('active');
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showDashboard(){showScreen('dashboardScreen');document.getElementById('previewBtn').style.display='none';document.getElementById('saveBtn').style.display='none';renderDashboard();}
+
+// =========================================================
+// BUILDER
+// =========================================================
+function renderBuilder(){
+  const dt=S.currentDoc;
+  document.getElementById('sidebarEyebrow').textContent=dt.name;
+  document.getElementById('sidebarDocName').textContent=getDocTitle()||'New Document';
+  renderSidebar(); renderStep(); updateProgress();
 }
 
-function showDashboard() {
-  showScreen('dashboardScreen');
-  renderDashboard();
+function getDocTitle(){
+  const d=S.formData;
+  if(d.teacher_name&&d.subject) return d.subject+' — '+d.teacher_name;
+  return d.teacher_name||d.subject||'';
 }
 
-// ===== RENDER BUILDER =====
-function renderBuilder() {
-  const doc = state.currentDoc;
-  document.getElementById('sidebarEyebrow').textContent = doc.name;
-  document.getElementById('sidebarDocName').textContent = getDocTitle() || 'New Document';
-
-  renderStepList();
-  renderMainStep();
-  updateProgress();
+function renderSidebar(){
+  const dt=S.currentDoc;
+  document.getElementById('stepList').innerHTML=dt.steps.map((s,i)=>{
+    const active=i===S.currentStep, done=isStepDone(i);
+    return`<div class="step-tab ${active?'active':''} ${done?'completed':''}" onclick="goStep(${i})">
+      <div class="step-num">${done?'✓':i+1}</div>
+      <div class="step-info">
+        <div class="step-title">${s.shortTitle||s.title}</div>
+        <div class="step-status">${done?'Completed':active?'In progress':'Not started'}</div>
+      </div></div>`;}).join('');
 }
 
-function getDocTitle() {
-  const data = state.formData;
-  return (data.teacher && data.subject) ? `${data.subject} — ${data.teacher}` : (data.teacher || data.subject || '');
-}
-
-function renderStepList() {
-  const doc = state.currentDoc;
-  const list = document.getElementById('stepList');
-  list.innerHTML = doc.steps.map((step, i) => {
-    const isActive = i === state.currentStep;
-    const isCompleted = isStepCompleted(i);
-    return `
-      <div class="step-tab ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}" onclick="goToStep(${i})">
-        <div class="step-num">${isCompleted ? '✓' : i + 1}</div>
-        <div class="step-info">
-          <div class="step-title">${step.shortTitle || step.title}</div>
-          <div class="step-status">${isCompleted ? 'Completed' : isActive ? 'In progress' : 'Not started'}</div>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function isStepCompleted(stepIndex) {
-  const step = state.currentDoc.steps[stepIndex];
-  return step.fields.filter(f => f.required).every(f => {
-    const val = state.formData[f.id];
-    return val && String(val).trim().length > 0;
+function isStepDone(i){
+  return S.currentDoc.steps[i].fields.filter(f=>f.required).every(f=>{
+    const v=S.formData[f.id];
+    if(f.type==='sow_table'||f.type==='lp_activities_table'||f.type==='diary_table'||f.type==='record_table'||f.type==='assessments_setup'){
+      const rows=S.tableData[f.id];
+      return rows&&rows.length>0;
+    }
+    return v&&String(v).trim().length>0;
   });
 }
 
-function goToStep(i) {
-  state.currentStep = i;
-  renderStepList();
-  renderMainStep();
-  updateProgress();
-  document.getElementById('builderMain').scrollTo({top:0, behavior:'smooth'});
+function goStep(i){S.currentStep=i;renderSidebar();renderStep();updateProgress();document.getElementById('builderMain').scrollTo({top:0,behavior:'smooth'});}
+
+function updateProgress(){
+  const dt=S.currentDoc;
+  const done=dt.steps.filter((_,i)=>isStepDone(i)).length;
+  const pct=Math.round(done/dt.steps.length*100);
+  document.getElementById('progressPercent').textContent=pct+'%';
+  document.getElementById('progressBarFill').style.width=pct+'%';
 }
 
-function updateProgress() {
-  const doc = state.currentDoc;
-  const completed = doc.steps.filter((_, i) => isStepCompleted(i)).length;
-  const pct = Math.round((completed / doc.steps.length) * 100);
-  document.getElementById('progressPercent').textContent = pct + '%';
-  document.getElementById('progressBarFill').style.width = pct + '%';
-}
-
-// ===== RENDER MAIN STEP =====
-function renderMainStep() {
-  const doc = state.currentDoc;
-  const step = doc.steps[state.currentStep];
-  const isLast = state.currentStep === doc.steps.length - 1;
-  const isFirst = state.currentStep === 0;
-
-  const fieldsHtml = step.fields.map(field => renderField(field)).join('');
-
-  const html = `
+// =========================================================
+// RENDER STEP
+// =========================================================
+function renderStep(){
+  const dt=S.currentDoc, step=dt.steps[S.currentStep];
+  const isFirst=S.currentStep===0, isLast=S.currentStep===dt.steps.length-1;
+  document.getElementById('builderMain').innerHTML=`
     <div class="step-header">
-      <div class="step-eyebrow">Step ${state.currentStep + 1} of ${doc.steps.length}</div>
+      <div class="step-eyebrow">Step ${S.currentStep+1} of ${dt.steps.length}</div>
       <h2>${step.title}</h2>
-      ${step.desc ? `<p>${step.desc}</p>` : ''}
+      ${step.desc?`<p>${step.desc}</p>`:''}
     </div>
-    ${fieldsHtml}
+    ${step.fields.map(f=>renderField(f)).join('')}
     <div class="step-nav">
-      <button class="btn btn-outline" onclick="${isFirst ? 'showDashboard()' : `goToStep(${state.currentStep - 1})`}">
-        ${isFirst ? '← Dashboard' : '← Previous'}
-      </button>
+      <button class="btn btn-outline" onclick="${isFirst?'showDashboard()':'goStep('+(S.currentStep-1)+')'}">${isFirst?'← Dashboard':'← Back'}</button>
       <div style="display:flex;gap:10px">
-        ${isLast
-          ? `<button class="btn btn-gold" onclick="completeDocument()">✓ Complete Document</button>`
-          : `<button class="btn btn-primary" onclick="goToStep(${state.currentStep + 1})">Next Step →</button>`
-        }
+        ${isLast?`<button class="btn btn-gold" onclick="completeDoc()">✓ Complete</button>`:''}
+        ${!isLast?`<button class="btn btn-primary" onclick="goStep(${S.currentStep+1})">Next →</button>`:''}
       </div>
-    </div>
-  `;
+    </div>`;
 
-  document.getElementById('builderMain').innerHTML = html;
-
-  // Restore saved values
-  step.fields.forEach(field => {
-    const el = document.getElementById('field_' + field.id);
-    if (el && state.formData[field.id] !== undefined) {
-      el.value = state.formData[field.id];
+  // restore values & bind events
+  step.fields.forEach(f=>{
+    const el=document.getElementById('field_'+f.id);
+    if(el){
+      if(S.formData[f.id]!==undefined) el.value=S.formData[f.id];
+      el.addEventListener('input',()=>onInput(f));
+      el.addEventListener('focus',()=>showGuidance(f));
     }
-    // Bind events
-    if (el) {
-      el.addEventListener('input', () => onFieldInput(field));
-      el.addEventListener('focus', () => showGuidance(field));
-    }
-  });
-
-  // Render special fields
-  step.fields.forEach(field => {
-    if (field.type === 'activities') renderActivitiesTable(field);
-    if (field.type === 'scheme_table') renderSchemeTable(field);
-    if (field.type === 'record_table') renderRecordTable(field);
-    if (field.type === 'diary_table') renderDiaryTable(field);
-    if (field.type === 'learner_list') renderLearnerList(field);
-    if (field.type === 'assessments_setup') renderAssessmentsSetup(field);
+    // special
+    if(f.type==='sow_table') renderSowTable(f);
+    if(f.type==='lp_activities_table') renderLpActivities(f);
+    if(f.type==='diary_table') renderDiaryTable(f);
+    if(f.type==='record_table') renderRecordTable(f);
+    if(f.type==='assessments_setup') renderAssessmentsSetup(f);
   });
 }
 
-function renderField(field) {
-  if (field.type === 'activities' || field.type === 'scheme_table' || field.type === 'record_table' || field.type === 'diary_table' || field.type === 'learner_list' || field.type === 'assessments_setup') {
-    return `
-      <div class="form-field-group" id="fg_${field.id}">
-        <label class="field-label">${field.label}${field.required ? '<span class="required">*</span>' : ''}</label>
-        <p class="field-hint">${field.hint || ''}</p>
-        <div id="special_${field.id}"></div>
-      </div>
-    `;
+function renderField(f){
+  if(['sow_table','lp_activities_table','diary_table','record_table','assessments_setup'].includes(f.type)){
+    return`<div class="form-field-group" id="fg_${f.id}">
+      <label class="field-label">${f.label}${f.required?'<span class="req">*</span>':''}</label>
+      ${f.hint?`<p class="field-hint">${f.hint}</p>`:''}
+      <div id="special_${f.id}"></div></div>`;
   }
-  if (field.type === 'select') {
-    const options = (field.options || []).map(opt => `<option value="${opt}">${opt}</option>`).join('');
-    return `
-      <div class="form-field-group" id="fg_${field.id}">
-        <label class="field-label" for="field_${field.id}">${field.label}${field.required ? '<span class="required">*</span>' : ''}</label>
-        ${field.hint ? `<p class="field-hint">${field.hint}</p>` : ''}
-        <select class="field-input field-select" id="field_${field.id}" onchange="onFieldChange('${field.id}')" onfocus="showGuidanceById('${field.id}')">
-          ${options}
-        </select>
-      </div>
-    `;
+  if(f.type==='select'){
+    return`<div class="form-field-group" id="fg_${f.id}">
+      <label class="field-label" for="field_${f.id}">${f.label}${f.required?'<span class="req">*</span>':''}</label>
+      ${f.hint?`<p class="field-hint">${f.hint}</p>`:''}
+      <select class="field-input field-select" id="field_${f.id}" onchange="onSelect('${f.id}')" onfocus="showGuidanceById('${f.id}')">
+        ${(f.options||[]).map(o=>`<option value="${o}">${o}</option>`).join('')}
+      </select></div>`;
   }
-  if (field.type === 'textarea') {
-    return `
-      <div class="form-field-group" id="fg_${field.id}">
-        <label class="field-label" for="field_${field.id}">${field.label}${field.required ? '<span class="required">*</span>' : ''}</label>
-        ${field.hint ? `<p class="field-hint">${field.hint}</p>` : ''}
-        <textarea class="field-input" id="field_${field.id}" rows="4" placeholder="${field.placeholder || ''}" oninput="onFieldChange('${field.id}')" onfocus="showGuidanceById('${field.id}')"></textarea>
-        ${field.validation ? `<div class="field-validation" id="fv_${field.id}"></div>` : ''}
-      </div>
-    `;
+  if(f.type==='textarea'){
+    return`<div class="form-field-group" id="fg_${f.id}">
+      <label class="field-label" for="field_${f.id}">${f.label}${f.required?'<span class="req">*</span>':''}</label>
+      ${f.hint?`<p class="field-hint">${f.hint}</p>`:''}
+      <textarea class="field-input" id="field_${f.id}" rows="4" placeholder="${f.placeholder||''}" oninput="onInput2('${f.id}')" onfocus="showGuidanceById('${f.id}')"></textarea>
+      ${f.validation?`<div class="field-validation" id="fv_${f.id}"></div>`:''}
+      </div>`;
   }
-  return `
-    <div class="form-field-group" id="fg_${field.id}">
-      <label class="field-label" for="field_${field.id}">${field.label}${field.required ? '<span class="required">*</span>' : ''}</label>
-      ${field.hint ? `<p class="field-hint">${field.hint}</p>` : ''}
-      <input class="field-input" type="${field.type || 'text'}" id="field_${field.id}" placeholder="${field.placeholder || ''}" oninput="onFieldChange('${field.id}')" onfocus="showGuidanceById('${field.id}')">
-    </div>
-  `;
+  return`<div class="form-field-group" id="fg_${f.id}">
+    <label class="field-label" for="field_${f.id}">${f.label}${f.required?'<span class="req">*</span>':''}</label>
+    ${f.hint?`<p class="field-hint">${f.hint}</p>`:''}
+    <input class="field-input" type="${f.type||'text'}" id="field_${f.id}" placeholder="${f.placeholder||''}" oninput="onInput2('${f.id}')" onfocus="showGuidanceById('${f.id}')">
+    </div>`;
 }
 
-// ===== SPECIAL FIELD RENDERERS =====
-function renderActivitiesTable(field) {
-  const container = document.getElementById('special_' + field.id);
-  if (!container) return;
-  const docId = state.currentDoc.id;
-  if (!activitiesData[docId]) activitiesData[docId] = {};
-  if (!activitiesData[docId][field.id] || activitiesData[docId][field.id].length === 0) {
-    activitiesData[docId][field.id] = [
-      { time: '5 min', phase: 'Review', teacher: '', learner: '' },
-      { time: '15 min', phase: 'Explanation', teacher: '', learner: '' },
-      { time: '10 min', phase: 'Practice', teacher: '', learner: '' },
-      { time: '5 min', phase: 'Application', teacher: '', learner: '' },
-    ];
-  }
-  const rows = activitiesData[docId][field.id];
-
-  let html = `
-    <table class="activities-table" id="act_table_${field.id}">
-      <thead><tr>
-        <th style="width:70px">Time</th>
-        <th style="width:110px">Phase</th>
-        <th>Teacher Activity</th>
-        <th>Learner Activity</th>
-        <th style="width:36px"></th>
-      </tr></thead>
-      <tbody>
-        ${rows.map((r, i) => `
-          <tr id="act_row_${i}">
-            <td><textarea rows="2" oninput="updateActivity('${field.id}',${i},'time',this.value)" onfocus="showActivityGuidance()">${r.time || ''}</textarea></td>
-            <td><textarea rows="2" oninput="updateActivity('${field.id}',${i},'phase',this.value)">${r.phase || ''}</textarea></td>
-            <td><textarea rows="2" oninput="updateActivity('${field.id}',${i},'teacher',this.value)" placeholder="e.g. Explain the concept using examples on the board...">${r.teacher || ''}</textarea></td>
-            <td><textarea rows="2" oninput="updateActivity('${field.id}',${i},'learner',this.value)" placeholder="e.g. Listen and copy key points, then attempt practice problems...">${r.learner || ''}</textarea></td>
-            <td style="text-align:center;vertical-align:middle"><button onclick="removeActivityRow('${field.id}',${i})" style="background:none;border:none;cursor:pointer;color:#E07B5A;font-size:1rem;">✕</button></td>
-          </tr>
-        `).join('')}
-      </tbody>
-    </table>
-    <button class="add-row-btn" onclick="addActivityRow('${field.id}')">+ Add Phase</button>
-  `;
-  container.innerHTML = html;
-  state.formData[field.id] = JSON.stringify(rows);
+function onInput(f){
+  const el=document.getElementById('field_'+f.id);
+  if(!el)return;
+  S.formData[f.id]=el.value;
+  if(f.validation) runVal(f,el.value);
+  updateProgress(); renderSidebar();
+  document.getElementById('sidebarDocName').textContent=getDocTitle()||'New Document';
+}
+function onInput2(id){
+  const el=document.getElementById('field_'+id); if(!el)return;
+  S.formData[id]=el.value; updateProgress(); renderSidebar();
+  document.getElementById('sidebarDocName').textContent=getDocTitle()||'New Document';
+}
+function onSelect(id){const el=document.getElementById('field_'+id);if(!el)return;S.formData[id]=el.value;updateProgress();renderSidebar();}
+function runVal(f,v){
+  const c=document.getElementById('fv_'+f.id); if(!c||!f.validation)return;
+  c.innerHTML=f.validation.map(r=>`<div class="validation-row ${r.rule(v)?'pass':'fail'}"><span class="v-icon">${r.rule(v)?'✓':'○'}</span> ${r.message}</div>`).join('');
 }
 
-function updateActivity(fieldId, rowIndex, col, val) {
-  const docId = state.currentDoc.id;
-  if (!activitiesData[docId]) activitiesData[docId] = {};
-  if (!activitiesData[docId][fieldId]) activitiesData[docId][fieldId] = [];
-  if (!activitiesData[docId][fieldId][rowIndex]) activitiesData[docId][fieldId][rowIndex] = {};
-  activitiesData[docId][fieldId][rowIndex][col] = val;
-  state.formData[fieldId] = JSON.stringify(activitiesData[docId][fieldId]);
-  updateProgress();
-}
-
-function addActivityRow(fieldId) {
-  const docId = state.currentDoc.id;
-  if (!activitiesData[docId]) activitiesData[docId] = {};
-  if (!activitiesData[docId][fieldId]) activitiesData[docId][fieldId] = [];
-  activitiesData[docId][fieldId].push({ time: '', phase: '', teacher: '', learner: '' });
-  const step = state.currentDoc.steps[state.currentStep];
-  const field = step.fields.find(f => f.id === fieldId);
-  renderActivitiesTable(field);
-}
-
-function removeActivityRow(fieldId, rowIndex) {
-  const docId = state.currentDoc.id;
-  activitiesData[docId][fieldId].splice(rowIndex, 1);
-  const step = state.currentDoc.steps[state.currentStep];
-  const field = step.fields.find(f => f.id === fieldId);
-  renderActivitiesTable(field);
-}
-
-function renderSchemeTable(field) {
-  const container = document.getElementById('special_' + field.id);
-  if (!container) return;
-  const docId = state.currentDoc.id;
-  if (!activitiesData[docId]) activitiesData[docId] = {};
-  if (!activitiesData[docId][field.id] || activitiesData[docId][field.id].length === 0) {
-    activitiesData[docId][field.id] = Array.from({length:12}, (_, i) => ({ week: i+1, topic: '', subtopic: '', method: '', resources: '', remarks: '' }));
-  }
-  const rows = activitiesData[docId][field.id];
-  let html = `
-    <table class="activities-table" style="font-size:0.82rem">
-      <thead><tr>
-        <th style="width:50px">Week</th>
-        <th>Topic</th>
-        <th>Subtopic</th>
-        <th>Methods</th>
-        <th>Resources</th>
-        <th>Remarks</th>
-      </tr></thead>
-      <tbody>
-        ${rows.map((r, i) => `
-          <tr>
-            <td style="text-align:center;font-weight:600">${r.week}</td>
-            <td><textarea rows="2" oninput="updateSchemeRow(${i},'topic',this.value,'${field.id}')">${r.topic||''}</textarea></td>
-            <td><textarea rows="2" oninput="updateSchemeRow(${i},'subtopic',this.value,'${field.id}')">${r.subtopic||''}</textarea></td>
-            <td><textarea rows="2" oninput="updateSchemeRow(${i},'method',this.value,'${field.id}')">${r.method||''}</textarea></td>
-            <td><textarea rows="2" oninput="updateSchemeRow(${i},'resources',this.value,'${field.id}')">${r.resources||''}</textarea></td>
-            <td><textarea rows="2" oninput="updateSchemeRow(${i},'remarks',this.value,'${field.id}')">${r.remarks||''}</textarea></td>
-          </tr>
-        `).join('')}
-      </tbody>
-    </table>
-    <button class="add-row-btn" onclick="addSchemeRow('${field.id}')">+ Add Week</button>
-  `;
-  container.innerHTML = html;
-  state.formData[field.id] = JSON.stringify(rows);
-}
-
-function updateSchemeRow(rowIndex, col, val, fieldId) {
-  const docId = state.currentDoc.id;
-  activitiesData[docId][fieldId][rowIndex][col] = val;
-  state.formData[fieldId] = JSON.stringify(activitiesData[docId][fieldId]);
-}
-
-function addSchemeRow(fieldId) {
-  const docId = state.currentDoc.id;
-  const rows = activitiesData[docId][fieldId];
-  rows.push({ week: rows.length + 1, topic: '', subtopic: '', method: '', resources: '', remarks: '' });
-  const step = state.currentDoc.steps[state.currentStep];
-  const field = step.fields.find(f => f.id === fieldId);
-  renderSchemeTable(field);
-}
-
-function renderRecordTable(field) {
-  const container = document.getElementById('special_' + field.id);
-  if (!container) return;
-  const docId = state.currentDoc.id;
-  if (!activitiesData[docId]) activitiesData[docId] = {};
-  if (!activitiesData[docId][field.id]) activitiesData[docId][field.id] = [
-    { date: '', period: '', topic: '', covered: '', remarks: '' }
+// =========================================================
+// SCHEME OF WORK TABLE
+// =========================================================
+function getOrInitSow(fid){
+  if(!S.tableData[fid]) S.tableData[fid]=[
+    {week:'1',dates:'From …… to …………',double_periods:'2 (Double)',single_periods:'1 (Single)',lesson1_title:'Lesson title 1',lesson1_obj:'a) Knowledge & Understanding:\n-\nb) Skills:\n-\nc) Attitudes & Values:\n-',lesson2_title:'Lesson title 2',lesson2_obj:'As in Lesson 1 above',lesson3_title:'Lesson title 3',lesson3_obj:'-',lesson4_title:'',lesson4_obj:'',methods:'',resources:'',observations:''},
   ];
-  const rows = activitiesData[docId][field.id];
-  let html = `
-    <table class="activities-table">
-      <thead><tr>
-        <th>Date</th><th>Period</th><th>Planned Topic</th><th>Actually Covered</th><th>Remarks</th><th></th>
-      </tr></thead>
-      <tbody>
-        ${rows.map((r,i) => `
-          <tr>
-            <td><input type="date" class="field-input" style="min-width:120px;font-size:0.78rem" value="${r.date||''}" oninput="updateRecordRow(${i},'date',this.value,'${field.id}')"></td>
-            <td><textarea rows="2" oninput="updateRecordRow(${i},'period',this.value,'${field.id}')">${r.period||''}</textarea></td>
-            <td><textarea rows="2" oninput="updateRecordRow(${i},'topic',this.value,'${field.id}')">${r.topic||''}</textarea></td>
-            <td><textarea rows="2" oninput="updateRecordRow(${i},'covered',this.value,'${field.id}')">${r.covered||''}</textarea></td>
-            <td><textarea rows="2" oninput="updateRecordRow(${i},'remarks',this.value,'${field.id}')">${r.remarks||''}</textarea></td>
-            <td><button onclick="removeRecordRow(${i},'${field.id}')" style="background:none;border:none;cursor:pointer;color:#E07B5A">✕</button></td>
-          </tr>
-        `).join('')}
-      </tbody>
-    </table>
-    <button class="add-row-btn" onclick="addRecordRow('${field.id}')">+ Add Entry</button>
-  `;
-  container.innerHTML = html;
-  state.formData[field.id] = JSON.stringify(rows);
+  return S.tableData[fid];
 }
 
-function updateRecordRow(i,col,val,fid){ const docId=state.currentDoc.id; activitiesData[docId][fid][i][col]=val; state.formData[fid]=JSON.stringify(activitiesData[docId][fid]); }
-function addRecordRow(fid){ const docId=state.currentDoc.id; activitiesData[docId][fid].push({date:'',period:'',topic:'',covered:'',remarks:''}); const step=state.currentDoc.steps[state.currentStep]; const field=step.fields.find(f=>f.id===fid); renderRecordTable(field); }
-function removeRecordRow(i,fid){ const docId=state.currentDoc.id; activitiesData[docId][fid].splice(i,1); const step=state.currentDoc.steps[state.currentStep]; const field=step.fields.find(f=>f.id===fid); renderRecordTable(field); }
+function renderSowTable(f){
+  const container=document.getElementById('special_'+f.id);
+  if(!container)return;
+  const rows=getOrInitSow(f.id);
+  let html=`<div class="act-table-wrap"><table class="act-form-table" style="font-size:.78rem;min-width:900px">
+    <thead><tr>
+      <th style="width:60px">No. of Weeks</th>
+      <th style="width:90px">Dates</th>
+      <th style="width:90px">No. of Periods</th>
+      <th style="width:110px">Lesson Titles</th>
+      <th>Learning Objectives<br><small>(a) K&U &nbsp; b) Skills &nbsp; c) Att. & Values)</small></th>
+      <th style="width:110px">Teaching Methods & Evaluation</th>
+      <th style="width:90px">Resources & References</th>
+      <th style="width:80px">Observations</th>
+      <th style="width:36px"></th>
+    </tr></thead><tbody>`;
 
-function renderDiaryTable(field) {
-  const container = document.getElementById('special_' + field.id);
-  if (!container) return;
-  const days = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
-  const docId = state.currentDoc.id;
-  if (!activitiesData[docId]) activitiesData[docId] = {};
-  if (!activitiesData[docId][field.id]) activitiesData[docId][field.id] = days.map(d => ({ day: d, lessons: '', observations: '', actions: '' }));
-  const rows = activitiesData[docId][field.id];
-  let html = `
-    <table class="activities-table">
-      <thead><tr><th>Day</th><th>Lessons Taught</th><th>Observations / Notes</th><th>Follow-up Actions</th></tr></thead>
-      <tbody>
-        ${rows.map((r,i) => `
-          <tr>
-            <td style="font-weight:600;white-space:nowrap">${r.day}</td>
-            <td><textarea rows="3" oninput="updateDiaryRow(${i},'lessons',this.value,'${field.id}')">${r.lessons||''}</textarea></td>
-            <td><textarea rows="3" oninput="updateDiaryRow(${i},'observations',this.value,'${field.id}')">${r.observations||''}</textarea></td>
-            <td><textarea rows="3" oninput="updateDiaryRow(${i},'actions',this.value,'${field.id}')">${r.actions||''}</textarea></td>
-          </tr>
-        `).join('')}
-      </tbody>
-    </table>
-  `;
-  container.innerHTML = html;
-  state.formData[field.id] = JSON.stringify(rows);
-}
-function updateDiaryRow(i,col,val,fid){ const docId=state.currentDoc.id; activitiesData[docId][fid][i][col]=val; state.formData[fid]=JSON.stringify(activitiesData[docId][fid]); }
-
-function renderLearnerList(field) {
-  const container = document.getElementById('special_' + field.id);
-  if (!container) return;
-  const saved = state.formData[field.id] || '';
-  container.innerHTML = `
-    <textarea class="field-input" style="min-height:200px" id="field_${field.id}" placeholder="Enter one learner name per line:&#10;HAKIZIMANA Jean Pierre&#10;IMANISHIMWE Claudette&#10;..." oninput="state.formData['${field.id}']=this.value;updateProgress()">${saved}</textarea>
-    <p class="field-hint mt-4">Enter one name per line. Total: <span id="learner_count_${field.id}">0</span> learners</p>
-  `;
-  const ta = document.getElementById('field_' + field.id);
-  ta.addEventListener('input', () => {
-    const count = ta.value.split('\n').filter(l => l.trim()).length;
-    document.getElementById('learner_count_' + field.id).textContent = count;
+  rows.forEach((r,i)=>{
+    html+=`<tr>
+      <td><input value="${esc(r.week||'')}" oninput="sowUpdate(${i},'week',this.value,'${f.id}')" style="min-height:auto"></td>
+      <td><textarea rows="2" oninput="sowUpdate(${i},'dates',this.value,'${f.id}')">${esc(r.dates||'')}</textarea></td>
+      <td><textarea rows="3" oninput="sowUpdate(${i},'double_periods',this.value,'${f.id}')">${esc(r.double_periods||'')}</textarea></td>
+      <td><textarea rows="3" oninput="sowUpdate(${i},'lesson1_title',this.value,'${f.id}')">${esc(r.lesson1_title||'')}</textarea>
+          <textarea rows="2" style="border-top:1px dashed #ccc;margin-top:4px" oninput="sowUpdate(${i},'lesson2_title',this.value,'${f.id}')" placeholder="Lesson 2 title">${esc(r.lesson2_title||'')}</textarea>
+          <textarea rows="2" style="border-top:1px dashed #ccc;margin-top:4px" oninput="sowUpdate(${i},'lesson3_title',this.value,'${f.id}')" placeholder="Lesson 3 title">${esc(r.lesson3_title||'')}</textarea>
+          ${r.lesson4_title!==undefined?`<textarea rows="2" style="border-top:1px dashed #ccc;margin-top:4px" oninput="sowUpdate(${i},'lesson4_title',this.value,'${f.id}')" placeholder="Lesson 4 title">${esc(r.lesson4_title||'')}</textarea>`:''}
+      </td>
+      <td><textarea rows="5" oninput="sowUpdate(${i},'lesson1_obj',this.value,'${f.id}')" placeholder="Lesson 1 objectives">${esc(r.lesson1_obj||'')}</textarea>
+          <textarea rows="2" style="border-top:1px dashed #ccc;margin-top:4px" oninput="sowUpdate(${i},'lesson2_obj',this.value,'${f.id}')" placeholder="Lesson 2 obj.">${esc(r.lesson2_obj||'')}</textarea>
+      </td>
+      <td><textarea rows="4" oninput="sowUpdate(${i},'methods',this.value,'${f.id}')" placeholder="Teaching methods & evaluation procedures">${esc(r.methods||'')}</textarea></td>
+      <td><textarea rows="4" oninput="sowUpdate(${i},'resources',this.value,'${f.id}')" placeholder="Resources & references">${esc(r.resources||'')}</textarea></td>
+      <td><textarea rows="4" oninput="sowUpdate(${i},'observations',this.value,'${f.id}')">${esc(r.observations||'')}</textarea></td>
+      <td><button class="del-row-btn" onclick="delSowRow(${i},'${f.id}')">✕</button></td>
+    </tr>`;
   });
+
+  html+=`</tbody></table></div>
+    <button class="add-row-btn" onclick="addSowRow('${f.id}')">+ Add Unit / Week</button>`;
+  container.innerHTML=html;
 }
 
-function renderAssessmentsSetup(field) {
-  const container = document.getElementById('special_' + field.id);
-  if (!container) return;
-  const docId = state.currentDoc.id;
-  if (!activitiesData[docId]) activitiesData[docId] = {};
-  if (!activitiesData[docId][field.id]) activitiesData[docId][field.id] = [
-    { name: 'Quiz 1', date: '', max: '10', type: 'Formative' },
-    { name: 'Class Test 1', date: '', max: '30', type: 'Formative' },
-    { name: 'Mid-term Exam', date: '', max: '50', type: 'Summative' },
+function sowUpdate(i,col,val,fid){getOrInitSow(fid)[i][col]=val;}
+function addSowRow(fid){
+  getOrInitSow(fid).push({week:'',dates:'',double_periods:'',single_periods:'',lesson1_title:'',lesson1_obj:'',lesson2_title:'',lesson2_obj:'',lesson3_title:'',lesson3_obj:'',lesson4_title:'',lesson4_obj:'',methods:'',resources:'',observations:''});
+  const f=findField(fid); renderSowTable(f);
+}
+function delSowRow(i,fid){S.tableData[fid].splice(i,1);const f=findField(fid);renderSowTable(f);}
+
+// =========================================================
+// LESSON PLAN ACTIVITIES TABLE
+// =========================================================
+function getOrInitLpAct(fid){
+  if(!S.tableData[fid]) S.tableData[fid]=[
+    {phase:'Introduction',timing:'5',teacher:'',learner:'',competences:''},
+    {phase:'Development of the Lesson',timing:'30',teacher:'',learner:'',competences:''},
+    {phase:'Conclusion',timing:'5',teacher:'',learner:'',competences:''},
   ];
-  const rows = activitiesData[docId][field.id];
-  let html = `
-    <table class="activities-table">
-      <thead><tr><th>Assessment Name</th><th>Date</th><th>Max Marks</th><th>Type</th><th></th></tr></thead>
-      <tbody>
-        ${rows.map((r,i) => `
-          <tr>
-            <td><input class="field-input" style="font-size:0.84rem" value="${r.name||''}" oninput="updateAssessRow(${i},'name',this.value,'${field.id}')"></td>
-            <td><input type="date" class="field-input" style="font-size:0.78rem" value="${r.date||''}" oninput="updateAssessRow(${i},'date',this.value,'${field.id}')"></td>
-            <td><input type="number" class="field-input" style="font-size:0.84rem" value="${r.max||''}" oninput="updateAssessRow(${i},'max',this.value,'${field.id}')"></td>
-            <td>
-              <select class="field-input field-select" style="font-size:0.84rem" onchange="updateAssessRow(${i},'type',this.value,'${field.id}')">
-                <option ${r.type==='Formative'?'selected':''}>Formative</option>
-                <option ${r.type==='Summative'?'selected':''}>Summative</option>
-              </select>
-            </td>
-            <td><button onclick="removeAssessRow(${i},'${field.id}')" style="background:none;border:none;cursor:pointer;color:#E07B5A">✕</button></td>
-          </tr>
-        `).join('')}
-      </tbody>
-    </table>
-    <button class="add-row-btn" onclick="addAssessRow('${field.id}')">+ Add Assessment</button>
-  `;
-  container.innerHTML = html;
-  state.formData[field.id] = JSON.stringify(rows);
-}
-function updateAssessRow(i,col,val,fid){ const docId=state.currentDoc.id; activitiesData[docId][fid][i][col]=val; state.formData[fid]=JSON.stringify(activitiesData[docId][fid]); }
-function addAssessRow(fid){ const docId=state.currentDoc.id; activitiesData[docId][fid].push({name:'',date:'',max:'',type:'Formative'}); const step=state.currentDoc.steps[state.currentStep]; const field=step.fields.find(f=>f.id===fid); renderAssessmentsSetup(field); }
-function removeAssessRow(i,fid){ const docId=state.currentDoc.id; activitiesData[docId][fid].splice(i,1); const step=state.currentDoc.steps[state.currentStep]; const field=step.fields.find(f=>f.id===fid); renderAssessmentsSetup(field); }
-
-// ===== FIELD INPUT HANDLING =====
-function onFieldInput(field) {
-  const el = document.getElementById('field_' + field.id);
-  if (!el) return;
-  state.formData[field.id] = el.value;
-  if (field.validation) runValidation(field, el.value);
-  updateProgress();
-  renderStepList();
-  document.getElementById('sidebarDocName').textContent = getDocTitle() || 'New Document';
+  return S.tableData[fid];
 }
 
-function onFieldChange(fieldId) {
-  const el = document.getElementById('field_' + fieldId);
-  if (el) state.formData[fieldId] = el.value;
-  updateProgress();
-  renderStepList();
+function renderLpActivities(f){
+  const container=document.getElementById('special_'+f.id);
+  if(!container)return;
+  const rows=getOrInitLpAct(f.id);
+  let html=`<div class="act-table-wrap"><table class="act-form-table" style="min-width:700px">
+    <thead><tr>
+      <th style="width:80px">Timing (min)</th>
+      <th style="width:130px">Phase</th>
+      <th>Teacher's Activities</th>
+      <th>Learners' Activities</th>
+      <th style="width:170px">Generic Competences & Cross-Cutting Issues addressed</th>
+    </tr></thead><tbody>`;
+
+  rows.forEach((r,i)=>{
+    html+=`<tr>
+      <td style="vertical-align:top"><input value="${esc(r.timing||'')}" oninput="lpActUpdate(${i},'timing',this.value,'${f.id}')" style="min-height:auto;width:60px"></td>
+      <td style="vertical-align:top">
+        ${['Introduction','Development of the Lesson','Conclusion'].includes(r.phase)
+          ? `<strong style="font-size:.8rem">${r.phase}</strong>`
+          : `<input value="${esc(r.phase||'')}" oninput="lpActUpdate(${i},'phase',this.value,'${f.id}')" style="min-height:auto" placeholder="Phase name">`}
+      </td>
+      <td><textarea rows="5" placeholder="Describe teacher activities. Start with action verbs: Explain, Ask, Demonstrate, Guide..." oninput="lpActUpdate(${i},'teacher',this.value,'${f.id}')">${esc(r.teacher||'')}</textarea></td>
+      <td><textarea rows="5" placeholder="Describe learner activities: Answer, Solve, Discuss, Draw, Present..." oninput="lpActUpdate(${i},'learner',this.value,'${f.id}')">${esc(r.learner||'')}</textarea></td>
+      <td><textarea rows="5" placeholder="e.g. Critical thinking, Communication, Cooperation, Problem-solving, Gender awareness..." oninput="lpActUpdate(${i},'competences',this.value,'${f.id}')">${esc(r.competences||'')}</textarea></td>
+    </tr>`;
+  });
+
+  html+=`</tbody></table></div>
+    <button class="add-row-btn" onclick="addLpActRow('${f.id}')">+ Add Phase</button>`;
+  container.innerHTML=html;
 }
 
-function runValidation(field, value) {
-  const container = document.getElementById('fv_' + field.id);
-  if (!container || !field.validation) return;
-  container.innerHTML = field.validation.map(rule => {
-    const pass = rule.rule(value);
-    return `<div class="validation-row ${pass ? 'pass' : 'fail'}"><span class="v-icon">${pass ? '✓' : '○'}</span> ${rule.message}</div>`;
-  }).join('');
+function lpActUpdate(i,col,val,fid){getOrInitLpAct(fid)[i][col]=val;}
+function addLpActRow(fid){
+  getOrInitLpAct(fid).push({phase:'',timing:'',teacher:'',learner:'',competences:''});
+  const f=findField(fid); renderLpActivities(f);
 }
 
-// ===== GUIDANCE PANEL =====
-function showGuidanceById(fieldId) {
-  const step = state.currentDoc.steps[state.currentStep];
-  const field = step.fields.find(f => f.id === fieldId);
-  if (field) showGuidance(field);
+// =========================================================
+// CLASS DIARY TABLE
+// =========================================================
+function getOrInitDiary(fid){
+  if(!S.tableData[fid]) S.tableData[fid]=[
+    {times:'',subject:'',matter:'',topic:'',application:'',observation:''},
+    {times:'',subject:'',matter:'',topic:'',application:'',observation:''},
+    {times:'',subject:'',matter:'',topic:'',application:'',observation:''},
+    {times:'',subject:'',matter:'',topic:'',application:'',observation:''},
+    {times:'',subject:'',matter:'',topic:'',application:'',observation:''},
+    {times:'',subject:'',matter:'',topic:'',application:'',observation:''},
+  ];
+  return S.tableData[fid];
 }
 
-function showGuidance(field) {
-  const panel = document.getElementById('guidanceContent');
-  const subtitle = document.getElementById('guidanceSubtitle');
-  if (!field || !field.guidance) return;
-  const g = field.guidance;
-  subtitle.textContent = field.label;
-  let html = '';
-  if (g.purpose) html += `<div class="tip-card"><strong>Purpose</strong>${g.purpose}</div>`;
-  if (g.tips && g.tips.length > 0) {
-    html += `<div class="guidance-section-title">Writing Tips</div>`;
-    html += g.tips.map(t => `<div class="tip-card" style="margin-bottom:6px"><strong></strong>${t}</div>`).join('');
-  }
-  if (g.example) {
-    html += `
-      <div class="guidance-section-title">Example</div>
-      <div class="example-card">
-        <div class="example-card-title">✦ Sample Answer</div>
-        <div class="example-text">${g.example.replace(/\n/g, '<br>')}</div>
-      </div>
-    `;
-  }
-  if (g.mistakes) {
-    html += `
-      <div class="guidance-section-title">Common Mistakes</div>
-      <div class="mistake-card"><strong>⚠ Avoid</strong>${g.mistakes}</div>
-    `;
-  }
-  panel.innerHTML = html || '<p class="text-sm color-light">No additional guidance for this field.</p>';
+function renderDiaryTable(f){
+  const container=document.getElementById('special_'+f.id);
+  if(!container)return;
+  const rows=getOrInitDiary(f.id);
+  let html=`<div class="act-table-wrap"><table class="act-form-table" style="min-width:700px">
+    <thead><tr><th style="width:90px">Times</th><th>Subject</th><th>Matter</th><th>Topic</th><th>Application</th><th>Observation</th><th style="width:30px"></th></tr></thead><tbody>`;
+  rows.forEach((r,i)=>{
+    html+=`<tr>
+      <td><input value="${esc(r.times||'')}" oninput="diaryUpdate(${i},'times',this.value,'${f.id}')" placeholder="e.g. 7:00–7:40" style="min-height:auto"></td>
+      <td><input value="${esc(r.subject||'')}" oninput="diaryUpdate(${i},'subject',this.value,'${f.id}')" style="min-height:auto"></td>
+      <td><input value="${esc(r.matter||'')}" oninput="diaryUpdate(${i},'matter',this.value,'${f.id}')" style="min-height:auto"></td>
+      <td><input value="${esc(r.topic||'')}" oninput="diaryUpdate(${i},'topic',this.value,'${f.id}')" style="min-height:auto"></td>
+      <td><input value="${esc(r.application||'')}" oninput="diaryUpdate(${i},'application',this.value,'${f.id}')" style="min-height:auto"></td>
+      <td><input value="${esc(r.observation||'')}" oninput="diaryUpdate(${i},'observation',this.value,'${f.id}')" style="min-height:auto"></td>
+      <td><button class="del-row-btn" onclick="delDiaryRow(${i},'${f.id}')">✕</button></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div><button class="add-row-btn" onclick="addDiaryRow('${f.id}')">+ Add Row</button>`;
+  container.innerHTML=html;
 }
 
-function showActivityGuidance() {
-  const panel = document.getElementById('guidanceContent');
-  const subtitle = document.getElementById('guidanceSubtitle');
-  subtitle.textContent = 'Lesson Activities';
-  panel.innerHTML = `
-    <div class="tip-card"><strong>Teacher Activity Tips</strong>Start each entry with an action verb: Explain, Demonstrate, Ask, Guide, Display, Distribute, Observe, Facilitate.</div>
-    <div class="tip-card"><strong>Learner Activity Tips</strong>Describe what learners actively do: Listen and note, Solve problems, Discuss in groups, Answer questions, Draw diagrams.</div>
-    <div class="example-card">
-      <div class="example-card-title">✦ Example Row</div>
-      <div class="example-text"><b>Phase:</b> Explanation (15 min)<br><b>Teacher:</b> Explain the steps for finding LCM. Write examples on the board. Ask learners to observe patterns.<br><b>Learner:</b> Listen, observe, and copy the examples. Answer questions asked by the teacher.</div>
-    </div>
-    <div class="mistake-card"><strong>⚠ Avoid</strong>Do not write "Teach the topic" — be specific about what happens in each phase.</div>
-  `;
+function diaryUpdate(i,col,val,fid){getOrInitDiary(fid)[i][col]=val;}
+function addDiaryRow(fid){getOrInitDiary(fid).push({times:'',subject:'',matter:'',topic:'',application:'',observation:''});renderDiaryTable(findField(fid));}
+function delDiaryRow(i,fid){S.tableData[fid].splice(i,1);renderDiaryTable(findField(fid));}
+
+// =========================================================
+// RECORD OF WORK TABLE
+// =========================================================
+function getOrInitRecord(fid){
+  if(!S.tableData[fid]) S.tableData[fid]=[{date:'',period:'',planned:'',covered:'',remarks:''}];
+  return S.tableData[fid];
+}
+function renderRecordTable(f){
+  const container=document.getElementById('special_'+f.id);
+  if(!container)return;
+  const rows=getOrInitRecord(f.id);
+  let html=`<div class="act-table-wrap"><table class="act-form-table" style="min-width:600px">
+    <thead><tr><th>Date</th><th>Period</th><th>Planned Topic</th><th>Actually Covered</th><th>Remarks</th><th></th></tr></thead><tbody>`;
+  rows.forEach((r,i)=>{
+    html+=`<tr>
+      <td><input type="date" value="${r.date||''}" oninput="recordUpdate(${i},'date',this.value,'${f.id}')" style="min-height:auto;width:120px;font-size:.78rem"></td>
+      <td><textarea rows="2" oninput="recordUpdate(${i},'period',this.value,'${f.id}')">${esc(r.period||'')}</textarea></td>
+      <td><textarea rows="2" oninput="recordUpdate(${i},'planned',this.value,'${f.id}')">${esc(r.planned||'')}</textarea></td>
+      <td><textarea rows="2" oninput="recordUpdate(${i},'covered',this.value,'${f.id}')">${esc(r.covered||'')}</textarea></td>
+      <td><textarea rows="2" oninput="recordUpdate(${i},'remarks',this.value,'${f.id}')">${esc(r.remarks||'')}</textarea></td>
+      <td><button class="del-row-btn" onclick="delRecordRow(${i},'${f.id}')">✕</button></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div><button class="add-row-btn" onclick="addRecordRow('${f.id}')">+ Add Entry</button>`;
+  container.innerHTML=html;
+}
+function recordUpdate(i,col,val,fid){getOrInitRecord(fid)[i][col]=val;}
+function addRecordRow(fid){getOrInitRecord(fid).push({date:'',period:'',planned:'',covered:'',remarks:''});renderRecordTable(findField(fid));}
+function delRecordRow(i,fid){S.tableData[fid].splice(i,1);renderRecordTable(findField(fid));}
+
+// =========================================================
+// ASSESSMENTS SETUP
+// =========================================================
+function getOrInitAssess(fid){
+  if(!S.tableData[fid]) S.tableData[fid]=[
+    {name:'Quiz 1',date:'',max:'10',type:'Formative'},
+    {name:'Class Test 1',date:'',max:'30',type:'Formative'},
+    {name:'Mid-term Exam',date:'',max:'50',type:'Summative'},
+  ];
+  return S.tableData[fid];
+}
+function renderAssessmentsSetup(f){
+  const container=document.getElementById('special_'+f.id);
+  if(!container)return;
+  const rows=getOrInitAssess(f.id);
+  let html=`<div class="act-table-wrap"><table class="act-form-table">
+    <thead><tr><th>Assessment Name</th><th>Date</th><th>Max Marks</th><th>Type</th><th></th></tr></thead><tbody>`;
+  rows.forEach((r,i)=>{
+    html+=`<tr>
+      <td><input value="${esc(r.name||'')}" oninput="assessUpdate(${i},'name',this.value,'${f.id}')" style="min-height:auto"></td>
+      <td><input type="date" value="${r.date||''}" oninput="assessUpdate(${i},'date',this.value,'${f.id}')" style="min-height:auto;font-size:.78rem"></td>
+      <td><input type="number" value="${r.max||''}" oninput="assessUpdate(${i},'max',this.value,'${f.id}')" style="min-height:auto;width:70px"></td>
+      <td><select onchange="assessUpdate(${i},'type',this.value,'${f.id}')" style="width:100%;border:none;background:transparent;font-size:.83rem">
+        <option ${r.type==='Formative'?'selected':''}>Formative</option>
+        <option ${r.type==='Summative'?'selected':''}>Summative</option>
+      </select></td>
+      <td><button class="del-row-btn" onclick="delAssessRow(${i},'${f.id}')">✕</button></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div><button class="add-row-btn" onclick="addAssessRow('${f.id}')">+ Add Assessment</button>`;
+  container.innerHTML=html;
+}
+function assessUpdate(i,col,val,fid){getOrInitAssess(fid)[i][col]=val;}
+function addAssessRow(fid){getOrInitAssess(fid).push({name:'',date:'',max:'',type:'Formative'});renderAssessmentsSetup(findField(fid));}
+function delAssessRow(i,fid){S.tableData[fid].splice(i,1);renderAssessmentsSetup(findField(fid));}
+
+// =========================================================
+// GUIDANCE PANEL
+// =========================================================
+function showGuidanceById(fid){const step=S.currentDoc.steps[S.currentStep];const f=step.fields.find(x=>x.id===fid);if(f)showGuidance(f);}
+function showGuidance(f){
+  const g=f.guidance; if(!g)return;
+  document.getElementById('guidanceSubtitle').textContent=f.label||'';
+  let html='';
+  if(g.purpose) html+=`<div class="tip-card"><strong>Purpose</strong>${g.purpose}</div>`;
+  if(g.tips&&g.tips.length) html+=`<div class="g-section-title">Writing Tips</div>`+g.tips.map(t=>`<div class="tip-card" style="margin-bottom:6px"><strong></strong>${t}</div>`).join('');
+  if(g.example) html+=`<div class="g-section-title">Example</div><div class="example-card"><div class="example-card-title">✦ Sample</div><div class="example-text">${g.example.replace(/\n/g,'<br>')}</div></div>`;
+  if(g.mistakes) html+=`<div class="g-section-title">Common Mistakes</div><div class="mistake-card"><strong>⚠ Avoid</strong>${g.mistakes}</div>`;
+  document.getElementById('guidanceContent').innerHTML=html||'<p style="font-size:.8rem;color:var(--ink-light)">No additional guidance.</p>';
 }
 
-// ===== SAVE =====
-function saveDocument() {
-  const doc = state.currentDoc;
-  const existing = state.recentDocs.find(d => d.typeId === doc.id && !d.id);
-  const docRecord = {
-    id: Date.now().toString(),
-    typeId: doc.id,
-    title: getDocTitle() || doc.name,
-    date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }),
-    progress: Math.round((doc.steps.filter((_,i) => isStepCompleted(i)).length / doc.steps.length) * 100),
-    formData: { ...state.formData },
+// =========================================================
+// SAVE
+// =========================================================
+function saveDocument(){
+  const dt=S.currentDoc;
+  const done=dt.steps.filter((_,i)=>isStepDone(i)).length;
+  const pct=Math.round(done/dt.steps.length*100);
+  const rec={
+    id:Date.now().toString(),
+    typeId:dt.id,
+    title:getDocTitle()||dt.name,
+    date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),
+    progress:pct,
+    formData:JSON.parse(JSON.stringify(S.formData)),
+    tableData:JSON.parse(JSON.stringify(S.tableData)),
   };
-  const idx = state.recentDocs.findIndex(d => d.typeId === doc.id);
-  if (idx >= 0) state.recentDocs[idx] = docRecord;
-  else state.recentDocs.push(docRecord);
-  localStorage.setItem('pedagodoc_recent', JSON.stringify(state.recentDocs));
+  const idx=S.recentDocs.findIndex(d=>d.typeId===dt.id);
+  if(idx>=0) S.recentDocs[idx]=rec; else S.recentDocs.push(rec);
+  localStorage.setItem('pedagodoc_v2',JSON.stringify(S.recentDocs));
   showToast('Document saved ✓');
 }
 
-// ===== COMPLETE =====
-function completeDocument() {
-  saveDocument();
-  const doc = state.currentDoc;
-  const completed = doc.steps.filter((_, i) => isStepCompleted(i)).length;
-  const pct = Math.round((completed / doc.steps.length) * 100);
-  document.getElementById('builderMain').innerHTML = `
-    <div class="completion-screen">
-      <div class="completion-icon">✓</div>
-      <h2>Document Complete!</h2>
-      <p>Your <strong>${doc.name}</strong> is ready. ${pct < 100 ? `<br><em>Note: ${doc.steps.length - completed} optional section(s) are incomplete. You can still export.</em>` : 'All sections have been completed.'}</p>
-      <div class="completion-actions">
-        <button class="btn btn-primary" onclick="openPreview()">Preview Document</button>
-        <button class="btn btn-outline" onclick="printFull()">🖨️ Print</button>
-        <button class="btn btn-outline" onclick="showDashboard()">← Dashboard</button>
-      </div>
+function completeDoc(){saveDocument();
+  document.getElementById('builderMain').innerHTML=`<div class="completion-screen">
+    <div class="completion-icon">✓</div>
+    <h2>Document Complete!</h2>
+    <p>Your <strong>${S.currentDoc.name}</strong> has been saved and is ready to preview or print in the official CBC format.</p>
+    <div class="completion-actions">
+      <button class="btn btn-primary" onclick="openPreview()">👁 Preview & Print</button>
+      <button class="btn btn-outline" onclick="showDashboard()">← Dashboard</button>
     </div>
-  `;
+  </div>`;
 }
 
-// ===== PREVIEW =====
-function openPreview() {
-  document.getElementById('previewContent').innerHTML = generatePreviewHTML();
+// =========================================================
+// PREVIEW & PRINT — OFFICIAL FORMATS
+// =========================================================
+function openPreview(){
+  document.getElementById('previewContent').innerHTML=generatePreview();
   document.getElementById('previewModal').classList.add('open');
 }
+function closePreview(){document.getElementById('previewModal').classList.remove('open');}
 
-function closePreview() {
-  document.getElementById('previewModal').classList.remove('open');
-}
-
-function printPreview() {
-  const content = document.getElementById('previewContent').innerHTML;
-  const w = window.open('', '_blank');
-  w.document.write(`<html><head><title>Document</title><style>body{font-family:serif;font-size:11pt;padding:20mm}table{width:100%;border-collapse:collapse}td,th{border:1px solid #000;padding:5px 8px}.school-name{text-align:center;font-size:14pt;font-weight:bold;text-transform:uppercase}.doc-type-title{text-align:center;font-size:13pt;font-weight:bold;margin:10px 0}.section-heading{font-weight:bold;border-bottom:1px solid #000;margin:14px 0 8px;padding-bottom:3px;text-transform:uppercase}</style></head><body>${content}</body></html>`);
+function printDoc(){
+  const body=document.getElementById('previewContent').innerHTML;
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><title>${S.currentDoc.name}</title>
+  <style>
+    @page{margin:15mm}
+    body{font-family:'Times New Roman',serif;font-size:10.5pt;color:#000;line-height:1.4}
+    *{box-sizing:border-box}
+    table{width:100%;border-collapse:collapse}
+    th,td{border:1px solid #000;padding:4px 6px;vertical-align:top}
+    th{font-weight:bold}
+    .no-border td,.no-border th{border:none}
+    .rotated{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:8pt;background:#ffe699}
+    .grey{background:#d9e1f2}
+    .lightgrey{background:#f2f2f2}
+    .bold{font-weight:bold}
+  </style></head><body>${body}</body></html>`);
   w.document.close();
   w.print();
 }
 
-function printFull() { openPreview(); setTimeout(printPreview, 500); }
-
-function generatePreviewHTML() {
-  const doc = state.currentDoc;
-  const d = state.formData;
-
-  if (doc.id === 'lesson_plan') return generateLessonPlanPreview(d);
-  if (doc.id === 'scheme') return generateSchemePreview(d);
-  return generateGenericPreview(d);
+function generatePreview(){
+  const id=S.currentDoc.id;
+  if(id==='scheme') return genSowPreview();
+  if(id==='lesson_plan') return genLpPreview();
+  if(id==='class_diary') return genDiaryPreview();
+  return genGenericPreview();
 }
 
-function generateLessonPlanPreview(d) {
-  const acts = activitiesData[state.currentDoc.id]?.activities_desc || [];
+// ---- SCHEME OF WORK PREVIEW ----
+function genSowPreview(){
+  const d=S.formData;
+  const rows=S.tableData['sow_rows']||[];
+  let tableRows='';
+  rows.forEach((r,idx)=>{
+    const unitNum=idx+1;
+    tableRows+=`
+      <tr>
+        <td rowspan="6" style="text-align:center;font-weight:bold;vertical-align:middle">${unitNum}<br><br>${esc(r.dates||'From……<br>to………')}</td>
+        <td rowspan="3" style="text-align:center;vertical-align:middle">${esc(r.double_periods||'2\n(Double)').replace(/\n/g,'<br>')}</td>
+        <td rowspan="1">${esc(r.lesson1_title||'Lesson title 1')}</td>
+        <td rowspan="3">${esc(r.lesson1_obj||'').replace(/\n/g,'<br>')}</td>
+        <td rowspan="6" class="rotated" style="min-width:22px">${esc(r.methods||'Teaching methods & Evaluation').replace(/\n/g,'<br>')}</td>
+        <td rowspan="6">${esc(r.resources||'').replace(/\n/g,'<br>')}</td>
+        <td rowspan="6">${esc(r.observations||'').replace(/\n/g,'<br>')}</td>
+      </tr>
+      <tr><td>${esc(r.lesson2_title||'Lesson title 2')}</td></tr>
+      <tr><td>${esc(r.lesson3_title||'Lesson title 3')}</td></tr>
+      <tr>
+        <td style="text-align:center;vertical-align:middle">${esc(r.single_periods||'1\n(Single)').replace(/\n/g,'<br>')}</td>
+        <td>${esc(r.lesson4_title||'Lesson title 4')}</td>
+        <td>${esc(r.lesson2_obj||'As in Lesson 1 above')}</td>
+      </tr>
+      <tr>
+        <td colspan="3" style="background:#f5f5f5;font-weight:bold;text-align:center">Summative Evaluation ${unitNum}&nbsp;&nbsp;&nbsp;Key unit competence: ……………………</td>
+      </tr>
+      <tr><td colspan="3" style="height:8px"></td></tr>
+    `;
+  });
+
   return `
-    <div class="school-header">
-      <div class="school-name">${d.school || 'School Name'}</div>
-      <div class="doc-type-title">LESSON PLAN</div>
+    <div class="sow-title">Format of the CBC Scheme of Work</div>
+    <div class="sow-meta">
+      Academic year: ${esc(d.academic_year||'…………')}&nbsp;&nbsp;&nbsp;&nbsp;Term: ${esc(d.term||'…………')}&nbsp;&nbsp;&nbsp;&nbsp;School: ${esc(d.school||'………………………')}<br>
+      Subject: ${esc(d.subject||'………………………')}&nbsp;&nbsp;&nbsp;&nbsp;Class + Combination: ${esc(d.class_combo||'…………')}&nbsp;&nbsp;&nbsp;&nbsp;Number of periods per week: ${esc(d.periods_per_week||'…………')}<br>
+      Teacher's name: ${esc(d.teacher_name||'………………………')}
     </div>
-    <div class="info-grid">
-      <div class="info-cell"><strong>Teacher:</strong> ${d.teacher||''}</div>
-      <div class="info-cell"><strong>Date:</strong> ${d.date||''}</div>
-      <div class="info-cell"><strong>Subject:</strong> ${d.subject||''}</div>
-      <div class="info-cell"><strong>Duration:</strong> ${d.duration||''} minutes</div>
-      <div class="info-cell"><strong>Class:</strong> ${d.class||''}</div>
-      <div class="info-cell"><strong>Period:</strong> ${d.period||''}</div>
-      <div class="info-cell" style="grid-column:span 2"><strong>Topic:</strong> ${d.topic||''} ${d.subtopic ? '— ' + d.subtopic : ''}</div>
-    </div>
-
-    <div class="section-heading">Instructional Objective</div>
-    <div class="section-body">${(d.objective||'').replace(/\n/g,'<br>')}</div>
-    ${d.bloom_level ? `<div class="section-body"><em>Bloom's Level: ${d.bloom_level}</em></div>` : ''}
-    ${d.prerequisites ? `<div class="section-heading">Prerequisites</div><div class="section-body">${(d.prerequisites||'').replace(/\n/g,'<br>')}</div>` : ''}
-
-    <div class="section-heading">Teaching & Learning Resources</div>
-    <div class="section-body"><strong>Teacher:</strong> ${(d.teacher_resources||'').replace(/\n/g,'<br>')}<br><strong>Learners:</strong> ${(d.learner_resources||'').replace(/\n/g,'<br>')}</div>
-
-    <div class="section-heading">Introduction (${d.intro_duration||''} min)</div>
-    <div class="section-body"><em>Method: ${d.intro_method||''}</em><br>${(d.intro_description||'').replace(/\n/g,'<br>')}</div>
-
-    <div class="section-heading">Lesson Development</div>
-    ${acts.length > 0 ? `
-      <table class="activities-preview">
-        <thead><tr><th>Time</th><th>Phase</th><th>Teacher Activity</th><th>Learner Activity</th></tr></thead>
-        <tbody>${acts.map(a => `<tr><td>${a.time||''}</td><td>${a.phase||''}</td><td>${a.teacher||''}</td><td>${a.learner||''}</td></tr>`).join('')}</tbody>
-      </table>
-    ` : '<div class="section-body"><em>No activities recorded.</em></div>'}
-
-    <div class="section-heading">Conclusion</div>
-    <div class="section-body"><em>Method: ${d.conclusion_method||''}</em><br>${(d.conclusion_description||'').replace(/\n/g,'<br>')}</div>
-    ${d.homework ? `<div class="section-body"><strong>Homework:</strong> ${d.homework}</div>` : ''}
-
-    <div class="section-heading">Assessment</div>
-    <div class="section-body"><strong>Type:</strong> ${d.assessment_type||''} | <strong>Method:</strong> ${d.assessment_method||''}<br><br>${(d.assessment_questions||'').replace(/\n/g,'<br>')}</div>
-
-    <div class="section-heading">Teacher's Reflection</div>
-    <div class="section-body">
-      <strong>Objective achieved:</strong> ${d.objective_achieved||''}<br>
-      <strong>Strengths:</strong> ${(d.strengths||'').replace(/\n/g,'<br>')}<br>
-      <strong>Improvements:</strong> ${(d.improvements||'').replace(/\n/g,'<br>')}
-    </div>
-
-    <div class="signature-line">
-      <div class="sig-box">Teacher's Signature ________________________</div>
-      <div class="sig-box">Head Teacher's Signature ________________________</div>
-    </div>
-  `;
-}
-
-function generateSchemePreview(d) {
-  const rows = activitiesData[state.currentDoc.id]?.weekly_plan || [];
-  return `
-    <div class="school-header">
-      <div class="school-name">${d.school||'School Name'}</div>
-      <div class="doc-type-title">SCHEME OF WORK</div>
-    </div>
-    <div class="info-grid">
-      <div class="info-cell"><strong>Teacher:</strong> ${d.teacher||''}</div>
-      <div class="info-cell"><strong>Subject:</strong> ${d.subject||''}</div>
-      <div class="info-cell"><strong>Class:</strong> ${d.class||''}</div>
-      <div class="info-cell"><strong>Term:</strong> ${d.term||''} — ${d.year||''}</div>
-    </div>
-    <table class="activities-preview" style="font-size:10pt">
-      <thead><tr><th>Week</th><th>Topic</th><th>Subtopic</th><th>Methods</th><th>Resources</th><th>Remarks</th></tr></thead>
-      <tbody>${rows.map(r => `<tr><td style="text-align:center">${r.week}</td><td>${r.topic||''}</td><td>${r.subtopic||''}</td><td>${r.method||''}</td><td>${r.resources||''}</td><td>${r.remarks||''}</td></tr>`).join('')}</tbody>
+    <table class="sow-table">
+      <thead><tr>
+        <th>Number of weeks &amp; Dates</th>
+        <th>Number of periods</th>
+        <th>Lesson title</th>
+        <th>Learning objectives (copied or adapted from the syllabus depending on the bunch of lesson) + Key unit competence</th>
+        <th class="rotated" style="min-width:22px">Teaching methods &amp; techniques + Evaluation procedures</th>
+        <th>Resources &amp; References</th>
+        <th>Observations</th>
+      </tr></thead>
+      <tbody>${tableRows||'<tr><td colspan="7" style="text-align:center;padding:20px;color:#888">No units entered yet. Go back and fill in the Weekly Plan step.</td></tr>'}</tbody>
     </table>
-    <div class="signature-line">
-      <div class="sig-box">Teacher: ________________________</div>
-      <div class="sig-box">HOD: ________________________</div>
-    </div>
-  `;
+    <div class="sig-row" style="margin-top:20px">
+      <div class="sig-line">Teacher: ___________________________</div>
+      <div class="sig-line">Head of Department: ___________________________</div>
+      <div class="sig-line">Head Teacher: ___________________________</div>
+    </div>`;
 }
 
-function generateGenericPreview(d) {
+// ---- LESSON PLAN PREVIEW ----
+function genLpPreview(){
+  const d=S.formData;
+  const acts=S.tableData['lp_act_table']||[];
+
+  const phases=['Introduction','Development of the Lesson','Conclusion'];
+  let actRows='';
+  phases.forEach(phase=>{
+    const r=acts.find(a=>a.phase===phase)||{timing:'',teacher:'',learner:'',competences:''};
+    actRows+=`<tr>
+      <td class="lp-activities-table phase-label" style="white-space:nowrap;vertical-align:top">${phase}</td>
+      <td>${esc(r.timing||'')} min</td>
+      <td>${esc(r.teacher||'').replace(/\n/g,'<br>')}</td>
+      <td>${esc(r.learner||'').replace(/\n/g,'<br>')}</td>
+      <td>${esc(r.competences||'').replace(/\n/g,'<br>')}</td>
+    </tr>`;
+  });
+  // extra rows if teacher added more phases
+  acts.filter(a=>!phases.includes(a.phase)&&a.phase).forEach(r=>{
+    actRows+=`<tr>
+      <td class="lp-activities-table phase-label">${esc(r.phase||'')}</td>
+      <td>${esc(r.timing||'')} min</td>
+      <td>${esc(r.teacher||'').replace(/\n/g,'<br>')}</td>
+      <td>${esc(r.learner||'').replace(/\n/g,'<br>')}</td>
+      <td>${esc(r.competences||'').replace(/\n/g,'<br>')}</td>
+    </tr>`;
+  });
+
   return `
-    <div class="school-header">
-      <div class="school-name">${d.school||'School Name'}</div>
-      <div class="doc-type-title">${state.currentDoc.name.toUpperCase()}</div>
-    </div>
-    ${Object.entries(d).map(([k, v]) => v && typeof v === 'string' && !v.startsWith('[') ?
-      `<div class="section-heading">${k.replace(/_/g,' ').toUpperCase()}</div><div class="section-body">${v.replace(/\n/g,'<br>')}</div>` : ''
-    ).join('')}
-    <div class="signature-line">
-      <div class="sig-box">Teacher: ________________________</div>
-      <div class="sig-box">Head Teacher: ________________________</div>
-    </div>
-  `;
+    <table class="lp-header-grid">
+      <tr>
+        <td><span class="lbl">School Name:</span> ${esc(d.school||'')}</td>
+        <td colspan="2"><span class="lbl">Teacher name:</span> ${esc(d.teacher_name||'')}</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Term:</span> ${esc(d.term||'')}</td>
+        <td><span class="lbl">Date:</span> ${esc(d.date||'')}</td>
+        <td><span class="lbl"></span></td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Subject:</span> ${esc(d.subject||'')}</td>
+        <td><span class="lbl">Class:</span> ${esc(d.class_level||'')}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Unit N°:</span> ${esc(d.unit_no||'')}</td>
+        <td><span class="lbl">Lesson N°:</span> ${esc(d.lesson_no||'')}</td>
+        <td><span class="lbl">Duration:</span> ${esc(d.duration||'')} min</td>
+      </tr>
+      <tr>
+        <td colspan="3"><span class="lbl">Class size:</span> ${esc(d.class_size||'')}</td>
+      </tr>
+      <tr>
+        <td colspan="3" style="background:#f9f9f9">
+          <strong>Type of Special Educational Needs to be catered for in this lesson and number of learners in each category:</strong><br>
+          ${esc(d.sen||'').replace(/\n/g,'<br>')||'None identified'}
+        </td>
+      </tr>
+    </table>
+
+    <table class="lp-section-table" style="margin-top:-1px">
+      <tr><td class="row-label">Unit title</td><td>${esc(d.unit_title||'')}</td></tr>
+      <tr><td class="row-label">Key Unit Competence:</td><td>${esc(d.key_unit_competence||'').replace(/\n/g,'<br>')}</td></tr>
+      <tr><td class="row-label">Title of the lesson</td><td>${esc(d.lesson_title||'')}</td></tr>
+      <tr><td class="row-label">Instructional Objective(s)</td><td>${esc(d.objectives||'').replace(/\n/g,'<br>')}</td></tr>
+      <tr><td class="row-label">Plan for this Class (location: in / outside)</td><td>${esc(d.plan_location||'')}</td></tr>
+      <tr><td class="row-label">Learning Materials</td><td>${esc(d.learning_materials||'').replace(/\n/g,'<br>')}</td></tr>
+      <tr><td class="row-label">References</td><td>${esc(d.references||'').replace(/\n/g,'<br>')}</td></tr>
+    </table>
+
+    <table class="lp-activities-table" style="margin-top:-1px">
+      <thead>
+        <tr>
+          <th style="width:120px">Timing for each step</th>
+          <th style="width:70px">Time (min)</th>
+          <th>Description of teaching and learning activity — Teacher's activities</th>
+          <th>Learners' activities</th>
+          <th style="width:170px">Generic competences and cross cutting issues to be addressed + a short explanation</th>
+        </tr>
+      </thead>
+      <tbody>${actRows||'<tr><td colspan="5" style="text-align:center;padding:16px;color:#888">No activities entered.</td></tr>'}</tbody>
+    </table>
+
+    <table class="lp-section-table" style="margin-top:-1px">
+      <tr class="lp-self-eval"><td class="row-label">Teacher self-evaluation</td><td>${esc(d.self_eval||'').replace(/\n/g,'<br>')||'&nbsp;<br>&nbsp;<br>&nbsp;'}</td></tr>
+    </table>
+
+    <div class="sig-row">
+      <div class="sig-line">Teacher: ___________________________</div>
+      <div class="sig-line">Head Teacher: ___________________________</div>
+    </div>`;
 }
 
-// ===== TOAST =====
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
+// ---- CLASS DIARY PREVIEW ----
+function genDiaryPreview(){
+  const d=S.formData;
+  const rows=S.tableData['diary_rows']||[];
+  let tableRows=rows.map(r=>`<tr>
+    <td>${esc(r.times||'')}</td>
+    <td>${esc(r.subject||'')}</td>
+    <td>${esc(r.matter||'')}</td>
+    <td>${esc(r.topic||'')}</td>
+    <td>${esc(r.application||'')}</td>
+    <td>${esc(r.observation||'')}</td>
+  </tr>`).join('');
+  if(!tableRows) tableRows='<tr><td colspan="6" style="height:28px"></td></tr>'.repeat(6);
+
+  return `
+    <div class="diary-gov-header">
+      <div class="republic">REPUBLIC OF RWANDA</div>
+      <div style="font-size:2rem;margin:6px 0">🦅</div>
+      <div class="diary-ministry">Ministry of Education</div>
+    </div>
+    <div class="diary-title">CLASS DIARY</div>
+    <div class="diary-meta">
+      Teacher's name: ${esc(d.teacher_name||'…………………')}<br>
+      Class: ${esc(d.class||'…………………')}<br>
+      ………… the ${esc(d.week_date||'…………………')}
+    </div>
+    <table class="diary-table">
+      <thead><tr>
+        <th>Times</th><th>Subject</th><th>Matter</th><th>Topic</th><th>Application</th><th>Observation</th>
+      </tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table>
+    <table class="diary-hw-table" style="margin-top:-1px">
+      <tr>
+        <td class="hw-lbl">Homework</td>
+        <td>${esc(d.homework||'').replace(/\n/g,'<br>')||'&nbsp;'}</td>
+      </tr>
+    </table>`;
 }
 
-// ===== INIT =====
+// ---- GENERIC PREVIEW ----
+function genGenericPreview(){
+  const d=S.formData;
+  const dt=S.currentDoc;
+  return `
+    <div style="text-align:center;font-weight:bold;font-size:13pt;text-decoration:underline;margin-bottom:14px">${dt.name.toUpperCase()}</div>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:10px">
+      ${Object.entries(d).filter(([k,v])=>v&&typeof v==='string'&&!v.startsWith('[')&&v.length<300).map(([k,v])=>`
+        <tr><td style="border:1px solid #000;padding:5px 8px;font-weight:bold;width:160px;background:#f5f5f5">${k.replace(/_/g,' ').toUpperCase()}</td>
+        <td style="border:1px solid #000;padding:5px 8px">${esc(v).replace(/\n/g,'<br>')}</td></tr>`).join('')}
+    </table>`;
+}
+
+// =========================================================
+// UTILS
+// =========================================================
+function findField(fid){
+  for(const step of S.currentDoc.steps) for(const f of step.fields) if(f.id===fid) return f;
+  return null;
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+// =========================================================
+// INIT
+// =========================================================
 renderDashboard();
 </script>
 </body>
